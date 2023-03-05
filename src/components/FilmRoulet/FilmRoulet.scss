@@ -1,0 +1,68 @@
+.roulet {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    width: 100%;
+    min-height: 300px;
+    background-color: rgba(255,255,255,0.15);
+    border-radius: 6px;
+    &__right {
+        width: 60%;
+    }
+    &__field {
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+        &:last-child {
+            margin-bottom: 30px;
+        }
+    }
+    &__title {
+        min-width: 66px;
+        font-size: 18px;
+        text-transform: uppercase;
+        margin-right: 20px;
+    }
+    &__heading {
+        font-size: 24px;
+        font-weight: 700;
+    }
+}
+
+.film {
+    display: flex;
+    align-items: center;
+    &__poster {
+        width: 170px;
+        height: 250px;
+        margin-right: 20px;
+        border-radius: 6px;
+    }
+    &__title {
+        font-size: 24px;
+        font-weight: 700;
+        margin-bottom: 20px;
+    }
+    &__overview {
+        max-width: 390px;
+        font-size: 16px;
+        line-height: 1.2;
+    }
+    &__row {
+        display: flex;
+        margin-bottom: 20px;
+    }
+    &__year {
+        margin-right: 20px;
+    }
+    &__rating {
+        margin-right: 20px;
+    }
+    &__genres {
+        display: flex;
+        li {
+            margin-right: 10px;
+        }
+    }
+}

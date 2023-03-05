@@ -1,9 +1,12 @@
+import SpinPage from '../SpinPage/SpinPage';
 import './App.scss';
 
 function App() {
   return (
     <div className="app">
-      <h1>Pick Film</h1>
+      <div className="container">
+        <SpinPage />
+      </div>
     </div>
   );
 }

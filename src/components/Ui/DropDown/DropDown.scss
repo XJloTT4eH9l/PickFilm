@@ -1,0 +1,44 @@
+.drop-down {
+    width: 200px;
+    position: relative;
+    &__content {
+        position: absolute;
+        top: 110%;
+        width: 185%;
+        padding: 10px;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        background-color: rgba(155,155,155,0.6);
+        border-radius: 6px;
+        z-index: 3;
+    }
+    &__btn {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+        background-color: rgba(155,155,155,0.2);
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.2s linear;
+        &:hover {
+            background-color: rgba(207, 203, 203, 0.2);
+        }
+    }
+    &__img {
+        width: 12px;
+        height: 8px;
+        transition: transform 0.2s linear;
+        &--active {
+            transform: rotate(-180deg);
+        }
+    }
+    &__item {
+        padding: 5px;
+        cursor: pointer;
+        &:hover {
+            background-color: rgba(white, 0.5)
+        } 
+    }
+}

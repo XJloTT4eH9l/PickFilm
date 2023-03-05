@@ -33,6 +33,9 @@
     height: 100%;
     width: 100%;
     font-size: 100%;
+    font-family: sans-serif;
+    background-image: linear-gradient(to right top, #061a37, #002742, #00313c, #003a27, #0f3f08);
+    color: white;
     line-height: 1;
     font-size: 14px;
     -ms-text-size-adjust: 100%;
@@ -91,3 +94,9 @@
     font-size: inherit;
     font-weight: 400;
   }
+
+.container {
+    max-width: 1230px;
+    padding: 0 15px;
+    margin: 0 auto;
+}
