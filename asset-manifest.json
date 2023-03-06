@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/PickFilm/static/css/main.cbee25e6.css",
+    "main.js": "/PickFilm/static/js/main.2c62e872.js",
+    "static/media/spinner.svg": "/PickFilm/static/media/spinner.8a96751b209f65172881f3c25af5e7f8.svg",
+    "static/media/arrow.svg": "/PickFilm/static/media/arrow.8e1366b79e9f5358592e6da01445ea51.svg",
+    "index.html": "/PickFilm/index.html",
+    "main.cbee25e6.css.map": "/PickFilm/static/css/main.cbee25e6.css.map",
+    "main.2c62e872.js.map": "/PickFilm/static/js/main.2c62e872.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.cbee25e6.css",
+    "static/js/main.2c62e872.js"
+  ]
+}
