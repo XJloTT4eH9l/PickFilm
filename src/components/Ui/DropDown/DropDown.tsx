@@ -6,10 +6,11 @@ import './DropDown.scss';
 interface DropDownProps {
     items: IGenre[];
     currentItem: IGenre;
-    setCurrentItem: (genre: IGenre) => void
+    setCurrentItem: (genre: IGenre) => void;
+    classes?: string;
 }
 
-const DropDown: FC<DropDownProps> = ({items, currentItem, setCurrentItem}) => {
+const DropDown: FC<DropDownProps> = ({items, currentItem, setCurrentItem, classes}) => {
     const [isActive, setIsActive] = useState<boolean>(false);
 
     const itemHandler = (item: IGenre) => {
@@ -24,7 +25,7 @@ const DropDown: FC<DropDownProps> = ({items, currentItem, setCurrentItem}) => {
                 <img className={isActive ? 'drop-down__img drop-down__img--active' : 'drop-down__img'} src={arrow} alt='open genres'/>
             </div>
             {isActive && (
-                <ul className="drop-down__content">
+                <ul className={`drop-down__content ${classes}`}>
                     {items.map(item => (
                         <li 
                             key={item.id} 

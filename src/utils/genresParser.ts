@@ -9,6 +9,14 @@ export function genresParser(genresArray: number[]): string[] {
             case 80: return 'Crime';
             case 99: return 'Documentary';
             case 10751: return 'Family';
+            case 10759: return 'Action & Adventure';
+            case 10762: return 'Kids';
+            case 10763: return 'News';
+            case 10764: return 'Reality';
+            case 10765: return 'Sci-Fy & Fantasy';
+            case 10766: return 'Soap';
+            case 10767: return 'Talk';
+            case 10768: return 'War & Politics';
             case 14: return 'Fantasy';
             case 36: return 'History';
             case 27: return 'Horror';
@@ -20,7 +28,7 @@ export function genresParser(genresArray: number[]): string[] {
             case 10752: return 'War';
             case 37: return 'Western';
             case 10770: return 'TV Movie';
-            default: return'genre';
+            default: return 'genre';
         }
     })
 

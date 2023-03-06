@@ -1,14 +1,31 @@
 .roulet {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
     align-items: center;
     padding: 20px;
     width: 100%;
     min-height: 300px;
     background-color: rgba(255,255,255,0.15);
     border-radius: 6px;
+    &__left {
+        @media screen and (max-width: 990px) {
+            max-width: 600px;
+            margin: 0 auto;
+        } 
+    }
     &__right {
         width: 60%;
+        @media screen and (max-width: 990px) {
+            width: 100%;
+            text-align: center;
+        }
+    }
+    &__radio-container {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        width: 100%;
     }
     &__field {
         display: flex;
@@ -21,23 +38,35 @@
     &__title {
         min-width: 66px;
         font-size: 18px;
-        text-transform: uppercase;
         margin-right: 20px;
     }
     &__heading {
         font-size: 24px;
         font-weight: 700;
+        @media screen and (max-width: 990px) {
+            text-align: center;
+        }
     }
 }
 
 .film {
     display: flex;
     align-items: center;
+    @media screen and (max-width: 990px) {
+        margin-top: 30px;
+        justify-content: space-around;
+    }
+    @media screen and (max-width: 550px) {
+        flex-direction: column-reverse;
+    }
     &__poster {
         width: 170px;
         height: 250px;
         margin-right: 20px;
         border-radius: 6px;
+    }
+    &__content {
+        text-align: left;
     }
     &__title {
         font-size: 24px;
@@ -48,13 +77,23 @@
         max-width: 390px;
         font-size: 16px;
         line-height: 1.2;
+        @media screen and (max-width: 990px) {
+            max-width: 480px;
+        }
+        @media screen and (max-width: 550px) {
+            margin-bottom: 15px;
+        }
     }
     &__row {
         display: flex;
+        flex-wrap: wrap;
         margin-bottom: 20px;
     }
     &__year {
         margin-right: 20px;
+        @media screen and (max-width: 652px) {
+            margin-bottom: 10px;
+        }
     }
     &__rating {
         margin-right: 20px;
