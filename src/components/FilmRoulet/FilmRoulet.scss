@@ -1,13 +1,15 @@
+@import '../../styles/variables.scss';
+
 .roulet {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     align-items: center;
-    padding: 20px;
+    padding: $spacing-medium;
     width: 100%;
     min-height: 300px;
     background-color: rgba(255,255,255,0.15);
-    border-radius: 6px;
+    border-radius: $border-radius-small;
     &__left {
         @media screen and (max-width: 990px) {
             max-width: 600px;
@@ -38,7 +40,7 @@
     &__title {
         min-width: 66px;
         font-size: 18px;
-        margin-right: 20px;
+        margin-right: $spacing-medium;
     }
     &__heading {
         font-size: 24px;
@@ -56,14 +58,16 @@
         margin-top: 30px;
         justify-content: space-around;
     }
-    @media screen and (max-width: 550px) {
-        flex-direction: column-reverse;
-    }
+    
     &__poster {
         width: 170px;
         height: 250px;
-        margin-right: 20px;
-        border-radius: 6px;
+        margin-right: $spacing-medium;
+        border-radius: $border-radius-small;
+        @media screen and (max-width: 550px) {
+            width: 80px;
+            height: 120px;
+        }
     }
     &__content {
         text-align: left;
@@ -71,7 +75,10 @@
     &__title {
         font-size: 24px;
         font-weight: 700;
-        margin-bottom: 20px;
+        margin-bottom: $spacing-medium;
+        @media screen and (max-width: 550px) {
+            font-size: 18px;
+        }
     }
     &__overview {
         max-width: 390px;
@@ -81,13 +88,14 @@
             max-width: 480px;
         }
         @media screen and (max-width: 550px) {
+            font-size: 14px;
             margin-bottom: 15px;
         }
     }
     &__row {
         display: flex;
         flex-wrap: wrap;
-        margin-bottom: 20px;
+        margin-bottom: $spacing-medium;
     }
     &__year {
         margin-right: 20px;
@@ -96,7 +104,7 @@
         }
     }
     &__rating {
-        margin-right: 20px;
+        margin-right: $spacing-medium;
     }
     &__genres {
         display: flex;

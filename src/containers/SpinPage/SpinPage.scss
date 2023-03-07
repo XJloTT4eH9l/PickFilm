@@ -1,5 +1,8 @@
 .spin-page {
     padding-top: 100px;
+    @media screen and (max-width: 550px) {
+        padding-top: 50px;
+    }
     &__inner {
         display: flex;
         justify-content: center;
@@ -9,6 +12,9 @@
         font-size: 32px;
         font-weight: 700;
         margin-bottom: 10px;
+        @media screen and (max-width: 550px) {
+            font-size: 24px;
+        }
     }
     &__text {
         font-size: 16px;
