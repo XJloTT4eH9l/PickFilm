@@ -1,12 +1,15 @@
+import { Routes, Route } from 'react-router-dom';
+import Header from '../../components/Header/Header';
 import SpinPage from '../SpinPage/SpinPage';
 import './App.scss';
 
 function App() {
   return (
     <div className="app">
-      <div className="container">
-        <SpinPage />
-      </div>
+        <Header />
+        <Routes>
+          <Route path='/' element={ <SpinPage /> } />
+        </Routes>
     </div>
   );
 }

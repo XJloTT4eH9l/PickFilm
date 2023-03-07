@@ -1,0 +1,45 @@
+@import '../../styles/variables.scss';
+
+.header {
+    padding: 40px 0;
+    background-color: $black-color;
+    &__inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    &__logo {
+        span {
+            font-size: 30px;
+            strong {
+                font-weight: 700;
+                color: $green-color;
+            }
+        }
+    }
+}
+
+.nav {
+    &__item {
+        margin-right: $spacing-medium;
+    }
+    &__link {
+        padding: 7px 10px;
+        font-size: 18px;
+        border: 2px solid;
+        border-radius: $border-radius-small;
+        border-color: transparent;
+        transition: all 0.2s linear;
+        &:hover {
+            color: $green-color;
+        }    
+    }
+    &__list {
+        display: flex;
+    }
+}
+
+.active {
+    border-color: $green-color;
+    color: $green-color !important;
+}
