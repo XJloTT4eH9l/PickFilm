@@ -17,7 +17,7 @@
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         gap: 10px;
-        background-color: rgba(155,155,155,0.8);
+        background-color: rgba(155,155,155,1);
         border-radius: 6px;
         z-index: 3;
         &--genres {

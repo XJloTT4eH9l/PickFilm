@@ -7,8 +7,10 @@ const DISCOVER_MOVIE = '/discover/movie';
 
 const GENRES_TV = '/genre/tv/list';
 const DISCOVER_TV = '/discover/tv';
+const MOVIE = '/movie';
 
 export const API_GENRES: string = BASE_URL + GENRES + API_KEY + '&language=en-US';
+export const API_MOVIE: string =  BASE_URL + MOVIE;
 export const API_GENRES_TV: string = BASE_URL + GENRES_TV + API_KEY + '&language=en-US';
 export const API_DISCOVER_FILM: string = BASE_URL + DISCOVER_MOVIE + API_KEY + '&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false';
 export const API_DISCOVER_TV: string = BASE_URL + DISCOVER_TV + API_KEY + '&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false';

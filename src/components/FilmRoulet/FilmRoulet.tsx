@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+
 import { API_GENRES, API_DISCOVER_FILM, API_GENRES_TV, API_DISCOVER_TV, BASE_POSTER } from '../../constants/api';
 import { IGenre, IFilm } from '../../types/types';
 import { genresParser } from '../../utils/genresParser';
@@ -46,7 +48,7 @@ const FilmRoulet = () => {
     const getRandomFilm = async () => {
         try {
             setLoading(true);
-            const page = `&page=${Math.floor(Math.random() * 20) + 1}`;
+            const page = `&page=${Math.floor(Math.random() * 30) + 1}`;
             const genre = `&with_genres=${currentGenre.id}`;
             const score = `&vote_average.gte=${rating.id === 1 ? 1 : rating.name[1]}`;
 
@@ -59,12 +61,15 @@ const FilmRoulet = () => {
             const limit = data.data.results.length;
             const randomFilmNumber = Math.floor(Math.random() * limit) + 1;
             const randomFilm = data.data.results[randomFilmNumber];
+            const overview = randomFilm.overview.length > 250 
+                ? randomFilm.overview.slice(0, 250) + '...'
+                : randomFilm.overview
             const genresParsed = genresParser(randomFilm.genre_ids);
             
             const filmRes: IFilm = {
                 id : randomFilm.id,
                 title: randomFilm.title,
-                overview: randomFilm.overview,
+                overview: overview,
                 releaseDate: randomFilm.release_date,
                 voteAverage: randomFilm.vote_average,
                 posterPath: randomFilm.poster_path,
@@ -170,13 +175,13 @@ const FilmRoulet = () => {
                         <div className="film">
                             <img className='film__poster' src={BASE_POSTER + film.posterPath} alt={film.title} />
                             <div className="film__content">
-                                <h2 className="film__title">{film.title}</h2>
+                                <h2 className="film__title"><Link to={`/movies/:${film.id}`}>{film.title}</Link></h2>
                                 <div className="film__row">
                                     <p className="film__year">{film.releaseDate.split('-')[0]}</p>
                                     <p className="film__rating">Rating: {film.voteAverage}</p>
                                     <ul className="film__genres">
                                         {film.genres.map((genre, index) => (
-                                            <li key={genre}>{genre}</li>
+                                            <li className='film__genre' key={genre}>{genre}</li>
                                         ))}
                                     </ul>
                                 </div>
