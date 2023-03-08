@@ -37,7 +37,7 @@ const FilmInfo:FC<FilmInfoProps> = ({ filmInfo }) => {
                         <p className="film-info__field">{voteAverage}</p>
                     </div>
                     <div className='film-info__detail'>
-                        <p className="film-info__text">Release:</p>
+                        <p className="film-info__text">Year:</p>
                         <p className="film-info__field">{releaseDate.split('-')[0]}</p>
                     </div>
                     <div className='film-info__detail'>
@@ -56,12 +56,16 @@ const FilmInfo:FC<FilmInfoProps> = ({ filmInfo }) => {
                         <p className="film-info__text">Budget:</p>
                         <p className="film-info__field">{budget} $</p>
                     </div>
-                    <div className='film-info__detail'>
+                    <div className='film-info__detail tagline'>
                         <p className="film-info__text">Tagline:</p>
                         <p className="film-info__field">{tagline}</p>
                     </div>
 
                 </div>
+            </div>
+            <div className='tagline--bottom'>
+                <p className="film-info__text">Tagline:</p>
+                <p className="film-info__field">{tagline}</p>
             </div>
             <h3 className='film-info__title'>About what film:</h3>
             <p className="film-info__overwiev">{overview}</p>

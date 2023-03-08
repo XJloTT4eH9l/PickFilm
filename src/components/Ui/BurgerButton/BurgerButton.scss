@@ -1,0 +1,32 @@
+@import '../../../styles/variables.scss';
+
+.burger {
+    display: none;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    z-index: 100;
+    padding: 2px;
+    @media(max-width: 900px) {
+        display: block;
+    }
+    &--active {
+        .burger__item:nth-child(2) {
+            opacity: 0;
+        }
+        .burger__item:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+        .burger__item:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+    }
+    &__item {
+        display: block;
+        width: 28px;
+        height: 3px;
+        margin: 5px auto;
+        background-color: $white-color;
+        transition: all 0.5s ease-in-out;
+    }
+}

@@ -3,6 +3,8 @@
 .header {
     padding: 40px 0;
     background-color: $black-color;
+    position: relative;
+    z-index: 100;
     &__inner {
         display: flex;
         justify-content: space-between;
@@ -19,9 +21,39 @@
     }
 }
 
+.mobile-menu {
+    padding-top: 80px;
+    display: none;
+    width: 100%;
+    position: fixed;
+    top: -100%;
+    left: 0;
+    background-color: $black-color;
+    transition: top 0.3s ease-in-out;
+    z-index: 20;
+    @media screen and (max-width: 900px) {
+        display: flex;
+        justify-content: center;
+    }
+    &--active {
+        top: 0;
+    }
+}
+
 .nav {
+    @media screen and (max-width: 900px) {
+        display: none;
+    }
+    &--mobile-menu {
+        display: block;
+        text-align: center;
+        margin-top: $spacing-big;
+    }
     &__item {
         margin-right: $spacing-medium;
+        &--mobile-menu {
+            margin-bottom: $spacing-big;
+        }
     }
     &__link {
         padding: 7px 10px;
@@ -36,6 +68,9 @@
     }
     &__list {
         display: flex;
+        &--mobile-menu {
+            flex-direction: column;
+        }
     }
 }
 

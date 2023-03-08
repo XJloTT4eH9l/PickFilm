@@ -1,7 +1,9 @@
 .spin-page {
     padding-top: 100px;
+    padding-bottom: 100px;
     @media screen and (max-width: 550px) {
         padding-top: 50px;
+        padding-bottom: 100px;
     }
     &__inner {
         display: flex;

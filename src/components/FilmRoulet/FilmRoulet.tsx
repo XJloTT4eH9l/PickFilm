@@ -48,7 +48,7 @@ const FilmRoulet = () => {
     const getRandomFilm = async () => {
         try {
             setLoading(true);
-            const page = `&page=${Math.floor(Math.random() * 30) + 1}`;
+            const page = `&page=${Math.floor(Math.random() * 10) + 1}`;
             const genre = `&with_genres=${currentGenre.id}`;
             const score = `&vote_average.gte=${rating.id === 1 ? 1 : rating.name[1]}`;
 
@@ -170,26 +170,30 @@ const FilmRoulet = () => {
                 />
             </div>
             <div className="roulet__right">
-                { loading ? <Spinner /> : (
-                    film ? (
-                        <div className="film">
-                            <img className='film__poster' src={BASE_POSTER + film.posterPath} alt={film.title} />
-                            <div className="film__content">
-                                <h2 className="film__title"><Link to={`/movies/:${film.id}`}>{film.title}</Link></h2>
-                                <div className="film__row">
-                                    <p className="film__year">{film.releaseDate.split('-')[0]}</p>
-                                    <p className="film__rating">Rating: {film.voteAverage}</p>
-                                    <ul className="film__genres">
-                                        {film.genres.map((genre, index) => (
-                                            <li className='film__genre' key={genre}>{genre}</li>
-                                        ))}
-                                    </ul>
+                { 
+                    loading ? <Spinner /> : (
+                        film ? (
+                            <div className="film">
+                                <img className='film__poster' src={BASE_POSTER + film.posterPath} alt={film.title} />
+                                <div className="film__content">
+                                    <h2 className="film__title">
+                                        <Link to={`/movies/:${film.id}`}>{film.title}</Link>
+                                    </h2>
+                                    <div className="film__row">
+                                        <p className="film__year">{film.releaseDate.split('-')[0]}</p>
+                                        <p className="film__rating">Rating: {film.voteAverage}</p>
+                                        <ul className="film__genres">
+                                            {film.genres.map((genre) => (
+                                                <li className='film__genre' key={genre}>{genre}</li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                    <p className="film__overview">{film.overview}</p>
+                                    <p className="film__ads">* To get more details about film click on film title</p>
                                 </div>
-                                <p className="film__overview">{film.overview}</p>
                             </div>
-                        </div>
-                    ) :  <h2 className='roulet__heading'>Press Spin to get film</h2>
-                )
+                        ) :  <h2 className='roulet__heading'>Press Spin to get film</h2>
+                    )
                 }
             </div>
         </div>

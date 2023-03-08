@@ -11,7 +11,7 @@ function App() {
     <div className="app">
         <Header />
         <Routes>
-          <Route path='/' element={ <SpinPage /> } />
+          <Route path='/PickFilm' element={ <SpinPage /> } />
           <Route path='/movies/:id' element={ <MoviePage /> } />
         </Routes>
     </div>
