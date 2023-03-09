@@ -1,40 +1,35 @@
 import { FC } from 'react';
 import { BASE_POSTER } from '../../constants/api';
-import { IFilmDetail } from '../../types/types';
-
+import { ITvDetail } from '../../types/types';
 import LinkBack from '../Ui/LinkBack/LinkBack';
-import Spinner from '../../components/Ui/Spinner/Spinner';
-import axios from 'axios';
 
-import './FilmInfo.scss';
-
-interface FilmInfoProps {
-    filmInfo: IFilmDetail
+interface TvInfoProps {
+    tvInfo: ITvDetail
 }
 
-const FilmInfo:FC<FilmInfoProps> = ({ filmInfo }) => {
+const TvInfo:FC<TvInfoProps> = ({ tvInfo }) => {
     const {
         id,
-        title,
-        originalTitle, 
-        posterPath, 
-        overview, 
-        releaseDate, 
-        voteAverage, 
-        genres, 
-        backDropPath, 
-        runTime, 
-        tagline, 
-        budget
-    } = filmInfo;
-    
+        name,
+        originalName,
+        overview,
+        releaseDate,
+        lastDate,
+        voteAverage,
+        posterPath,
+        tagline,
+        genres,
+        numberOfSeasons,
+        numberOfEpisodes,
+        inProduction,
+    } = tvInfo;
     return (
-        <div className='film-info'>
+        <div className="film-info">
             <LinkBack />
-            <h1 className='film-info__title'>{title}</h1>
-            <h2 className='film-info__subtitle'>{originalTitle}</h2>
+            <h1 className='film-info__title'>{name}</h1>
+            <h2 className='film-info__subtitle'>{originalName}</h2>
             <div className="film-info__inner">
-                <img className='film-info__poster' src={BASE_POSTER + posterPath} alt={title} />
+                <img className='film-info__poster' src={BASE_POSTER + posterPath} alt={name} />
                 <div className="film-info__details">
                     <div className='film-info__detail'>
                         <p className="film-info__text">Rating:</p>
@@ -42,7 +37,13 @@ const FilmInfo:FC<FilmInfoProps> = ({ filmInfo }) => {
                     </div>
                     <div className='film-info__detail'>
                         <p className="film-info__text">Year:</p>
-                        <p className="film-info__field">{releaseDate.split('-')[0]}</p>
+                        <p className="film-info__field">
+                            {
+                                inProduction 
+                                    ?  releaseDate.split('-')[0] + ' - present' 
+                                    :  releaseDate.split('-')[0] + ' - ' + lastDate.split('-')[0]
+                            }
+                        </p>
                     </div>
                     <div className='film-info__detail'>
                         <p className="film-info__text">Genre:</p>
@@ -53,15 +54,13 @@ const FilmInfo:FC<FilmInfoProps> = ({ filmInfo }) => {
                         </ul>
                     </div>
                     <div className='film-info__detail'>
-                        <p className="film-info__text">Runtime:</p>
-                        <p className="film-info__field">{runTime} min</p>
+                        <p className="film-info__text">Seasons:</p>
+                        <p className="film-info__field">{numberOfSeasons}</p>
                     </div>
-                    {budget > 0 && (
-                        <div className='film-info__detail'>
-                            <p className="film-info__text">Budget:</p>
-                            <p className="film-info__field">{budget} $</p>
-                        </div>
-                    )}
+                    <div className='film-info__detail'>
+                        <p className="film-info__text">Episodes:</p>
+                        <p className="film-info__field">{numberOfEpisodes}</p>
+                    </div>
                     {tagline && (
                         <div className='film-info__detail tagline'>
                             <p className="film-info__text">Tagline:</p>
@@ -76,10 +75,10 @@ const FilmInfo:FC<FilmInfoProps> = ({ filmInfo }) => {
                     <p className="film-info__field">{tagline}</p>
                 </div>
             )}
-            <h3 className='film-info__title'>About what film:</h3>
+            <h3 className='film-info__title'>What is the series about:</h3>
             <p className="film-info__overwiev">{overview}</p>
         </div>
     )
 }
 
-export default FilmInfo
+export default TvInfo;

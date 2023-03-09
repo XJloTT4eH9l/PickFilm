@@ -75,7 +75,8 @@
     &__title {
         font-size: 24px;
         font-weight: 700;
-        margin-bottom: $spacing-medium;
+        line-height: 2;
+        margin-bottom: $spacing-small;
         & a {
             padding-bottom: 5px;
             border-bottom: 2px solid;

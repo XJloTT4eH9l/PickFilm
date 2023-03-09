@@ -16,14 +16,39 @@ export interface IFilm {
 export interface IFilmDetail  {
     id: number;
     title: string;
+    originalTitle: string;
     overview: string;
     releaseDate: string;
     voteAverage: number;
     posterPath: string;
     genres: IGenre[];
-    originalTitle: string;
     backDropPath: string;
     runTime: number;
     tagline: string;
     budget: number;
+}
+
+export interface ISeasons {
+    id: number;
+    episodeCount: number;
+    name: string;
+    overview: string;
+    posterPath: string;
+    seasonNumber: number;
+}
+
+export interface ITvDetail {
+    id: number;
+    name: string;
+    originalName: string;
+    overview: string;
+    releaseDate: string;
+    lastDate: string;
+    voteAverage: number;
+    posterPath: string;
+    tagline: string;
+    genres: IGenre[];
+    numberOfSeasons: number;
+    numberOfEpisodes: number;
+    inProduction: boolean;
 }

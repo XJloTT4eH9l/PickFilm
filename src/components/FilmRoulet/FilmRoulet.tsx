@@ -63,8 +63,9 @@ const FilmRoulet = () => {
             const randomFilm = data.data.results[randomFilmNumber];
             const overview = randomFilm.overview.length > 250 
                 ? randomFilm.overview.slice(0, 250) + '...'
-                : randomFilm.overview
+                : randomFilm.overview;
             const genresParsed = genresParser(randomFilm.genre_ids);
+            const genres = [genresParsed[0], genresParsed[1]];
             
             const filmRes: IFilm = {
                 id : randomFilm.id,
@@ -73,7 +74,7 @@ const FilmRoulet = () => {
                 releaseDate: randomFilm.release_date,
                 voteAverage: randomFilm.vote_average,
                 posterPath: randomFilm.poster_path,
-                genres: genresParsed
+                genres: genresParsed.length > 2 ? genres : genresParsed
             }
 
             setFilm(filmRes);
@@ -100,16 +101,20 @@ const FilmRoulet = () => {
             const limit = data.data.results.length;
             const randomFilmNumber = Math.floor(Math.random() * limit) + 1;
             const randomFilm = data.data.results[randomFilmNumber];
+            const overview = randomFilm.overview.length > 250 
+                ? randomFilm.overview.slice(0, 250) + '...'
+                : randomFilm.overview;
             const genresParsed = genresParser(randomFilm.genre_ids);
+            const genres = [genresParsed[0], genresParsed[1]];
             
             const filmRes: IFilm = {
                 id : randomFilm.id,
                 title: randomFilm.original_name,
-                overview: randomFilm.overview,
+                overview: overview,
                 releaseDate: randomFilm.first_air_date,
                 voteAverage: randomFilm.vote_average,
                 posterPath: randomFilm.poster_path,
-                genres: genresParsed
+                genres: genresParsed.length > 2 ? genres : genresParsed
             }
 
             setFilm(filmRes);
@@ -177,7 +182,11 @@ const FilmRoulet = () => {
                                 <img className='film__poster' src={BASE_POSTER + film.posterPath} alt={film.title} />
                                 <div className="film__content">
                                     <h2 className="film__title">
-                                        <Link to={`/movies/:${film.id}`}>{film.title}</Link>
+                                        <Link 
+                                            to={type === 'Movie' ? `/movies/:${film.id}` : `/tv/:${film.id}`}
+                                        >
+                                            {film.title}
+                                        </Link>
                                     </h2>
                                     <div className="film__row">
                                         <p className="film__year">{film.releaseDate.split('-')[0]}</p>

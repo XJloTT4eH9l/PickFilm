@@ -1,10 +1,13 @@
 import { useState, useEffect, FC } from 'react';
 import { useParams } from 'react-router-dom';
+
 import { IFilmDetail } from '../../types/types';
 import { API_KEY, API_MOVIE } from '../../constants/api';
+
 import FilmInfo from '../../components/FilmInfo/FilmInfo';
 import Spinner from '../../components/Ui/Spinner/Spinner';
 import axios from 'axios';
+
 import './MoviePage.scss';
 
 const MoviePage:FC = () => {
@@ -45,6 +48,7 @@ const MoviePage:FC = () => {
     useEffect(() => {
         getFilmInfo();
     }, [])
+    
     return (
         <section className='movie-page'>
             <div className="container">
