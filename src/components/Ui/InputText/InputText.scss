@@ -1,0 +1,8 @@
+@import '../../../styles/variables.scss';
+
+.input-text {
+    padding: 10px 15px;
+    min-width: 300px;
+    border-radius: $border-radius-small;
+    font-size: 16px;
+}

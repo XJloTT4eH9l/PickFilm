@@ -1,0 +1,25 @@
+@import '../../styles/variables.scss';
+
+.film-item {
+    cursor: pointer;
+    text-align: center;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-tap-highlight-color: transparent;
+    &:hover &__title {
+        color: $green-color;
+    }
+    &__poster {
+        width: 160px;
+        height: 260px;
+        border-radius: $border-radius-small;
+        margin-bottom: $spacing-small;
+        @media screen and (max-width: 450px) {
+            width: 120px;
+            height: 220px;
+        }
+    }
+    &__title {
+        transition: color 0.2s linear;
+        font-size: 18px;
+    }
+}

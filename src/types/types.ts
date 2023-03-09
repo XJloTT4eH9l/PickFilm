@@ -3,6 +3,12 @@ export interface IGenre {
     name: string;
 }
 
+export interface IFilmShort {
+    id: number;
+    title: string;
+    poster_path: string;
+}
+
 export interface IFilm {
     id: number;
     title: string;
@@ -22,7 +28,6 @@ export interface IFilmDetail  {
     voteAverage: number;
     posterPath: string;
     genres: IGenre[];
-    backDropPath: string;
     runTime: number;
     tagline: string;
     budget: number;

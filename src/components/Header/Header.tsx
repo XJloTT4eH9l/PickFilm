@@ -67,7 +67,7 @@ const Header = () => {
                         setMobileMenuOpen={setMobileMenuOpen} 
                     />
 
-                     <NavLink className='nav__link' to='/watchList'>watchList</NavLink>
+                     <NavLink className='nav__link' to='/watchList'>Watchlist</NavLink>
                 </div>
             </div>
         </header>

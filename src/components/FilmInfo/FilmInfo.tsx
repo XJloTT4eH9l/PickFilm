@@ -1,10 +1,9 @@
 import { FC } from 'react';
 import { BASE_POSTER } from '../../constants/api';
 import { IFilmDetail } from '../../types/types';
+import posterPlaceholder from '../../assets/img/movie-placeholder.png';
 
 import LinkBack from '../Ui/LinkBack/LinkBack';
-import Spinner from '../../components/Ui/Spinner/Spinner';
-import axios from 'axios';
 
 import './FilmInfo.scss';
 
@@ -22,7 +21,6 @@ const FilmInfo:FC<FilmInfoProps> = ({ filmInfo }) => {
         releaseDate, 
         voteAverage, 
         genres, 
-        backDropPath, 
         runTime, 
         tagline, 
         budget
@@ -34,7 +32,11 @@ const FilmInfo:FC<FilmInfoProps> = ({ filmInfo }) => {
             <h1 className='film-info__title'>{title}</h1>
             <h2 className='film-info__subtitle'>{originalTitle}</h2>
             <div className="film-info__inner">
-                <img className='film-info__poster' src={BASE_POSTER + posterPath} alt={title} />
+                {
+                    posterPath === null 
+                        ? <img className='film-info__poster' src={posterPlaceholder} alt={title} />
+                        : <img className='film-info__poster' src={BASE_POSTER + posterPath} alt={title} />
+                }
                 <div className="film-info__details">
                     <div className='film-info__detail'>
                         <p className="film-info__text">Rating:</p>

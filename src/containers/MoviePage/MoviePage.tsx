@@ -31,7 +31,6 @@ const MoviePage:FC = () => {
                 voteAverage: responce.data.vote_average,
                 posterPath: responce.data.poster_path,
                 genres: responce.data.genres,
-                backDropPath: responce.data.backdrop_path,
                 runTime: responce.data.runtime,
                 tagline: responce.data.tagline,
                 budget: responce.data.budget

@@ -1,0 +1,31 @@
+@import '../../styles/variables.scss';
+
+.search-page {
+    padding-top: 80px;
+    padding-bottom: 80px;
+    @media screen and (max-width: 550px) {
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+    &__title {
+        font-size: 32px;
+        font-weight: 700;
+        margin-bottom: $spacing-small;
+    }
+    &__list {
+        margin-top: $spacing-big;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: $spacing-medium;
+        @media screen and (max-width: 900px) {
+            grid-template-columns: repeat(3, 1fr);
+        }
+        @media screen and (max-width: 600px) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+    &__results {
+        font-size: 24px;
+        margin-top: $spacing-big;
+    }
+}
