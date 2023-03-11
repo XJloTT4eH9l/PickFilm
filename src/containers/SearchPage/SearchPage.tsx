@@ -27,7 +27,6 @@ const SearchPage:FC = () => {
                 setMovies(res.data.results);
     
                 setLoading(false);
-                console.log(res.data.results);
             } catch (error) {
                 alert(error);
             }

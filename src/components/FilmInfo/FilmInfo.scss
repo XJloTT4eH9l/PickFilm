@@ -68,6 +68,21 @@
             margin-right: $spacing-medium;
         }
     }
+    &__btn {
+        display: block;
+        min-width: 160px;
+        margin-bottom: $spacing-medium;
+        padding: $spacing-small $spacing-medium;
+        font-size: 16px;
+        color: $white-color;
+        background-color: rgba(255,255,255,0.16);
+        border-radius: $border-radius-small;
+        transition: background-color, color 0.3s linear;
+        &--active {
+            color: $black-color;
+            background-color: $green-color;
+        }
+    }
     &__detail {
         display: flex;
         align-items: center;

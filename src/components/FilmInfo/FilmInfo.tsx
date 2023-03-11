@@ -1,10 +1,14 @@
 import { FC } from 'react';
 import { BASE_POSTER } from '../../constants/api';
 import { IFilmDetail } from '../../types/types';
-import posterPlaceholder from '../../assets/img/movie-placeholder.png';
+
+import { useAppDispatch } from '../../hooks/reduxHooks';
+import { useAppSelector } from '../../hooks/reduxHooks';
+import { addMovie, removeMovie } from '../../store/watchListSlice';
 
 import LinkBack from '../Ui/LinkBack/LinkBack';
 
+import posterPlaceholder from '../../assets/img/movie-placeholder.png';
 import './FilmInfo.scss';
 
 interface FilmInfoProps {
@@ -12,6 +16,8 @@ interface FilmInfoProps {
 }
 
 const FilmInfo:FC<FilmInfoProps> = ({ filmInfo }) => {
+    const dispatch = useAppDispatch();
+    const films = useAppSelector(state => state.watchList.movies);
     const {
         id,
         title,
@@ -25,6 +31,15 @@ const FilmInfo:FC<FilmInfoProps> = ({ filmInfo }) => {
         tagline, 
         budget
     } = filmInfo;
+    const movieInState = films.find(movie => movie.id === id);
+
+    const addToWatchList = () => {
+        dispatch(addMovie({id, posterPath, title}))
+    }
+
+    const removeFromWatchList = () => {
+        dispatch(removeMovie({id, posterPath, title}))
+    }
     
     return (
         <div className='film-info'>
@@ -32,11 +47,14 @@ const FilmInfo:FC<FilmInfoProps> = ({ filmInfo }) => {
             <h1 className='film-info__title'>{title}</h1>
             <h2 className='film-info__subtitle'>{originalTitle}</h2>
             <div className="film-info__inner">
-                {
-                    posterPath === null 
-                        ? <img className='film-info__poster' src={posterPlaceholder} alt={title} />
-                        : <img className='film-info__poster' src={BASE_POSTER + posterPath} alt={title} />
-                }
+                <div className="film-info__left">
+                    {
+                        posterPath === null 
+                            ? <img className='film-info__poster' src={posterPlaceholder} alt={title} />
+                            : <img className='film-info__poster' src={BASE_POSTER + posterPath} alt={title} />
+                    }
+                </div>
+               
                 <div className="film-info__details">
                     <div className='film-info__detail'>
                         <p className="film-info__text">Rating:</p>
@@ -78,6 +96,12 @@ const FilmInfo:FC<FilmInfoProps> = ({ filmInfo }) => {
                     <p className="film-info__field">{tagline}</p>
                 </div>
             )}
+            <button 
+                className={movieInState ? 'film-info__btn film-info__btn--active' : 'film-info__btn'} 
+                onClick={movieInState ? removeFromWatchList : addToWatchList}
+            >
+                {movieInState ? 'Remove from watchlist' : 'Add to watchlist'}
+            </button>
             <h3 className='film-info__title'>About what film:</h3>
             <p className="film-info__overwiev">{overview}</p>
         </div>

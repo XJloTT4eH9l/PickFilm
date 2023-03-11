@@ -1,0 +1,65 @@
+@import '../../styles/variables.scss';
+
+.watchlist-page {
+    padding-top: 80px;
+    padding-bottom: 80px;
+    @media screen and (max-width: 550px) {
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+    &__title {
+        font-size: 32px;
+        font-weight: 700;
+        margin-bottom: $spacing-medium;
+    }
+    &__heading {
+        margin-bottom: $spacing-big;
+        font-size: 24px;
+        color: $white-color;
+        transition: color 0.3s linear;
+        cursor: pointer;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        -webkit-tap-highlight-color: transparent;
+        &--open {
+            color: $green-color;
+        }
+    }
+    &__subtitle {
+        font-size: 20px;
+        color: $white-color;
+        text-align: center;
+    }
+    &__movies {
+        margin-bottom: $spacing-big;
+    }
+    &__list {
+        margin-top: $spacing-big;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: $spacing-medium;
+        display: none;
+        opacity: 0;
+        transition: all 0.3s linear;
+        &--active {
+            display: grid;
+            opacity: 1;
+        }
+        @media screen and (max-width: 900px) {
+            grid-template-columns: repeat(3, 1fr);
+        }
+        @media screen and (max-width: 600px) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+    &__arrow {
+        margin-top: 4px;
+        margin-left: 10px;
+        width: 20px;
+        height: 20px;
+        transform: rotate(0deg);
+        transition: transform 0.2s linear;
+        &--active {
+            transform: rotate(180deg);
+        }
+    }
+}

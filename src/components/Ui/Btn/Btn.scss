@@ -1,17 +1,23 @@
+@import '../../../styles/variables.scss';
+
 .btn {
     font-size: 16px;
     transition: background-color 0.2s linear;
+    &--short {
+        padding: 10px 15px;
+
+    }
     &--wide {
         width: 100%;
         padding: 10px 0;
         font-weight: 700;
-        border-radius: 15px;
+        border-radius: $border-radius-medium;
         text-transform: uppercase;
     }
     &--primary {
-        background-color: #00e36a;
+        background-color: $green-color;
         &:hover {
-            background-color: rgba(#00e36a, 0.7);
+            background-color: rgba($green-color, 0.7);
         }
     }
 }

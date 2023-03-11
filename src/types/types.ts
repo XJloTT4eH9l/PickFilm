@@ -57,3 +57,9 @@ export interface ITvDetail {
     numberOfEpisodes: number;
     inProduction: boolean;
 }
+
+export interface IMovie {
+    id: number;
+    title: string;
+    posterPath: string;
+}

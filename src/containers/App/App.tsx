@@ -5,6 +5,7 @@ import SpinPage from '../SpinPage/SpinPage';
 import MoviePage from '../MoviePage/MoviePage';
 import TvPage from '../TvPage/TvPage';
 import SearchPage from '../SearchPage/SearchPage';
+import WatchListPage from '../WatchListPage/WatchListPage';
 
 import './App.scss';
 
@@ -16,8 +17,8 @@ function App() {
           <Route path='/PickFilm' element={ <SpinPage /> } />
           <Route path='/movies/:id' element={ <MoviePage /> } />
           <Route path='/tv/:id' element={ <TvPage /> } />
-          <Route path='/tv/:id' element={ <TvPage /> } />
-          <Route path='/search' element={ <SearchPage /> }></Route>
+          <Route path='/search' element={ <SearchPage /> } />
+          <Route path='/watchlist' element={ <WatchListPage /> } />
         </Routes>
     </div>
   );

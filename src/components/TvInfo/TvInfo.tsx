@@ -1,6 +1,11 @@
 import { FC } from 'react';
 import { BASE_POSTER } from '../../constants/api';
 import { ITvDetail } from '../../types/types';
+
+import { useAppDispatch } from '../../hooks/reduxHooks';
+import { useAppSelector } from '../../hooks/reduxHooks';
+import { addTV, removeTV } from '../../store/watchListSlice';
+import posterPlaceholder from '../../assets/img/movie-placeholder.png';
 import LinkBack from '../Ui/LinkBack/LinkBack';
 
 interface TvInfoProps {
@@ -8,6 +13,8 @@ interface TvInfoProps {
 }
 
 const TvInfo:FC<TvInfoProps> = ({ tvInfo }) => {
+    const dispatch = useAppDispatch();
+    const tvs = useAppSelector(state => state.watchList.tvs);
     const {
         id,
         name,
@@ -23,13 +30,29 @@ const TvInfo:FC<TvInfoProps> = ({ tvInfo }) => {
         numberOfEpisodes,
         inProduction,
     } = tvInfo;
+
+    const tvInState = tvs.find(tv => tv.id === id);
+
+    const addToWatchList = () => {
+        dispatch(addTV({id, posterPath, title:name}))
+    }
+
+    const removeFromWatchList = () => {
+        dispatch(removeTV({id, posterPath, title:name}))
+    }
     return (
         <div className="film-info">
             <LinkBack />
             <h1 className='film-info__title'>{name}</h1>
             <h2 className='film-info__subtitle'>{originalName}</h2>
             <div className="film-info__inner">
-                <img className='film-info__poster' src={BASE_POSTER + posterPath} alt={name} />
+            <div className="film-info__left">
+                    {
+                        posterPath === null 
+                            ? <img className='film-info__poster' src={posterPlaceholder} alt={name} />
+                            : <img className='film-info__poster' src={BASE_POSTER + posterPath} alt={name} />
+                    }
+                </div>
                 <div className="film-info__details">
                     <div className='film-info__detail'>
                         <p className="film-info__text">Rating:</p>
@@ -75,6 +98,12 @@ const TvInfo:FC<TvInfoProps> = ({ tvInfo }) => {
                     <p className="film-info__field">{tagline}</p>
                 </div>
             )}
+            <button 
+                className={tvInState ? 'film-info__btn film-info__btn--active' : 'film-info__btn'} 
+                onClick={tvInState ? removeFromWatchList : addToWatchList}
+            >
+                {tvInState ? 'Remove from watchlist' : 'Add to watchlist'}
+            </button>
             <h3 className='film-info__title'>What is the series about:</h3>
             <p className="film-info__overwiev">{overview}</p>
         </div>
