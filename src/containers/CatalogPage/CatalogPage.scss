@@ -1,0 +1,53 @@
+@import '../../styles/variables.scss';
+
+.catalog-page {
+    padding-top: 80px;
+    padding-bottom: 80px;
+    @media screen and (max-width: 550px) {
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+    &__title {
+        font-size: 32px;
+        font-weight: 700;
+        margin-bottom: $spacing-medium;
+    }
+    &__subtitle {
+        font-size: 24px;
+        color: $green-color;
+    }
+    &__btn-container {
+        margin-top: $spacing-big;
+        display: flex;
+        justify-content: center;
+    }
+    &__btn {
+        padding: $spacing-small $spacing-medium;
+        border: 2px solid;
+        border-color: $green-color;
+        border-radius: $border-radius-small;
+        background-color: transparent;
+        color: $white-color;
+        font-size: 16px;
+        transition: background-color 0.2s linear;
+        &:disabled {
+            opacity: 0.6;
+            cursor: auto;
+            &:hover {
+                background-color: transparent;
+            }
+        }
+        @media screen and (max-width: 900px) {
+
+        }
+        &:hover {
+            background-color: $green-color;
+            @media screen and (max-width: 900px) {
+                background-color: transparent;
+            }
+        }
+        &:first-child {
+            margin-right: $spacing-medium;
+        }
+    }
+}

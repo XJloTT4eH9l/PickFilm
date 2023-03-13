@@ -36,8 +36,9 @@
     font-size: 100%;
     font-family: sans-serif;
     background: linear-gradient(to right top, #051937, #002a48, #003947, #004531, #084f0b);
-    background-size: 400% 400%;
-    // animation: gradient 10s ease infinite;
+    background-size: 500% 500%;
+    scroll-behavior: smooth;
+    animation: gradient 8s ease infinite;
     height: 100vh;
     color: $white-color;
     line-height: 1;
@@ -46,17 +47,17 @@
     -moz-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
 
-    // @keyframes gradient {
-    //   0% {
-    //     background-position: 0% 50%;
-    //   }
-    //   50% {
-    //     background-position: 100% 50%;
-    //   }
-    //   100% {
-    //     background-position: 0% 50%;
-    //   }
-    // }
+    @keyframes gradient {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
   }
   
   input,
