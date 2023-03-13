@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/PickFilm/static/css/main.b7bc9701.css",
-    "main.js": "/PickFilm/static/js/main.2589d5b6.js",
+    "main.css": "/PickFilm/static/css/main.addbd3cc.css",
+    "main.js": "/PickFilm/static/js/main.7e915a12.js",
     "static/media/back.svg": "/PickFilm/static/media/back.0b0e22ac09d5df9b353f4e758b45ed5c.svg",
     "static/media/spinner.svg": "/PickFilm/static/media/spinner.8a96751b209f65172881f3c25af5e7f8.svg",
     "static/media/arrow.svg": "/PickFilm/static/media/arrow.8e1366b79e9f5358592e6da01445ea51.svg",
     "index.html": "/PickFilm/index.html",
-    "main.b7bc9701.css.map": "/PickFilm/static/css/main.b7bc9701.css.map",
-    "main.2589d5b6.js.map": "/PickFilm/static/js/main.2589d5b6.js.map"
+    "main.addbd3cc.css.map": "/PickFilm/static/css/main.addbd3cc.css.map",
+    "main.7e915a12.js.map": "/PickFilm/static/js/main.7e915a12.js.map"
   },
   "entrypoints": [
-    "static/css/main.b7bc9701.css",
-    "static/js/main.2589d5b6.js"
+    "static/css/main.addbd3cc.css",
+    "static/js/main.7e915a12.js"
   ]
 }
