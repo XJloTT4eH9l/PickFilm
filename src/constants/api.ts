@@ -12,6 +12,7 @@ const MOVIE = '/movie';
 const TV = '/tv';
 
 const POPULAR_MOVIES = '/movie/popular';
+const TOP_RATED_MOVIES = '/movie/top_rated';
 
 const SEARCH_MOVIE = '/search/movie';
 
@@ -23,3 +24,4 @@ export const API_SEARCH_MOVIE: string = BASE_URL + SEARCH_MOVIE + API_KEY + '&la
 export const API_DISCOVER_FILM: string = BASE_URL + DISCOVER_MOVIE + API_KEY + '&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false';
 export const API_DISCOVER_TV: string = BASE_URL + DISCOVER_TV + API_KEY + '&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false';
 export const API_POPULAR_MOVIES: string = BASE_URL + POPULAR_MOVIES + API_KEY + '&language=en-US';
+export const API_TOP_RATED_MOVIES: string = BASE_URL + TOP_RATED_MOVIES + API_KEY + '&language=en-US';

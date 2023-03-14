@@ -46,6 +46,11 @@
     -ms-text-size-adjust: 100%;
     -moz-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
+    @media screen and (max-width: 900px) {
+      & {
+        background-size: 500% 1000%;
+      }
+    }
 
     @keyframes gradient {
       0% {

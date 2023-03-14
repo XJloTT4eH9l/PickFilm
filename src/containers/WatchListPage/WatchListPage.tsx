@@ -11,8 +11,8 @@ const WatchListPage:FC = () => {
     const movies = useAppSelector(state => state.watchList.movies);
     const tvs = useAppSelector(state => state.watchList.tvs);
 
-    const [moviesOpen, setMoviesOpen] = useState<boolean>(false);
-    const [tvsOpen, setTvsOpen] = useState<boolean>(false);
+    const [moviesOpen, setMoviesOpen] = useState<boolean>(true);
+    const [tvsOpen, setTvsOpen] = useState<boolean>(true);
 
     return (
         <section className="watchlist-page">

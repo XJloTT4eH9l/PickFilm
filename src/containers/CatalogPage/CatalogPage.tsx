@@ -9,8 +9,11 @@ import axios from 'axios';
 import './CatalogPage.scss';
 
 const CatalogPage:FC = () => {
+    const tempPage = sessionStorage.getItem('page');
+    const moviesState = tempPage ? JSON.parse(tempPage) : 1;
+
     const [movies, setMovies] = useState<IFilmShort[]>();
-    const [page, setPage] = useState<number>(1);
+    const [page, setPage] = useState<number>(moviesState);
     const [lastPage, setLastPage] = useState<number>();
     const [loading, setLoading] = useState<boolean>(false);
 
@@ -20,6 +23,7 @@ const CatalogPage:FC = () => {
             const responce = await axios.get(API_POPULAR_MOVIES + `&page=${page}`);
             setMovies(responce.data.results);
             setLastPage(responce.data.total_pages);
+            sessionStorage.setItem('page', JSON.stringify(page));
             setLoading(false);
         } catch (error) {
             alert(error);
