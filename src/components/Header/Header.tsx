@@ -17,7 +17,7 @@ const Header = () => {
                     <nav className='nav'>
                         <ul className="nav__list">
                             <li className='nav__item'>
-                                <NavLink className='nav__link' to='/PickFilm'>Home</NavLink>
+                                <NavLink className='nav__link' to='/'>Home</NavLink>
                             </li>
                             <li className='nav__item'>
                                 <NavLink className='nav__link' to='/catalog'>Catalog</NavLink>
@@ -34,7 +34,7 @@ const Header = () => {
                                     <li className='nav__item--mobile-menu'>
                                         <NavLink 
                                             className='nav__link' 
-                                            to='/PickFilm'
+                                            to='/'
                                             onClick={() => setMobileMenuOpen(false)}
                                         >
                                             Home

@@ -15,7 +15,7 @@ function App() {
     <div className="app">
         <Header />
         <Routes>
-          <Route path='/PickFilm' element={ <SpinPage /> } />
+          <Route path='/' element={ <SpinPage /> } />
           <Route path='/movies/:id' element={ <MoviePage /> } />
           <Route path='/tv/:id' element={ <TvPage /> } />
           <Route path='/search' element={ <SearchPage /> } />

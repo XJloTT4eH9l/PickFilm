@@ -3,7 +3,7 @@
 Web application for choosing a movie to watch
 ## Links
 
-- Project [PickFilm](https://xjlott4eh9l.github.io/PickFilm/)
+- Project [PickFilm](https://pick-film.vercel.app/)
 - Repository [Repository](https://github.com/XJloTT4eH9l/PickFilm)
 
 ## Tech stack
@@ -16,7 +16,7 @@ Web application for choosing a movie to watch
 
 
 ## Page speed insight
--PC
-![Mobile](/src/assets/img/pc-speed.jpg "Mobile speed")
-- Mobile
-![Mobile](/src/assets/img/mobile-speed.jpg "Mobile speed")
+- Computer page speed
+![Computer](/src/assets/img/pc-speed.jpg "Computer page speed")
+- Mobile page speed
+![Mobile](/src/assets/img/mobile-speed.jpg "Mobile page speed")
