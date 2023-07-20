@@ -2,7 +2,6 @@
   "name": "pick-film",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://xjlott4eh9l.github.io/PickFilm/",
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.3",
     "@testing-library/jest-dom": "^5.16.5",
