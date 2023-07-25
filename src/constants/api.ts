@@ -25,3 +25,4 @@ export const API_DISCOVER_FILM: string = BASE_URL + DISCOVER_MOVIE + API_KEY + '
 export const API_DISCOVER_TV: string = BASE_URL + DISCOVER_TV + API_KEY + '&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false';
 export const API_POPULAR_MOVIES: string = BASE_URL + POPULAR_MOVIES + API_KEY + '&language=en-US';
 export const API_TOP_RATED_MOVIES: string = BASE_URL + TOP_RATED_MOVIES + API_KEY + '&language=en-US';
+export const API_BASE_MOVIES: string =  BASE_URL + '/movie/';

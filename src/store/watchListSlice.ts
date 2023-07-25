@@ -2,9 +2,10 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IMovie } from '../types/types';
 
 type watchListState = {
-    movies: IMovie[],
-    tvs: IMovie[]
+  movies: IMovie[],
+  tvs: IMovie[]
 }
+
 const tempMovies = localStorage.getItem('movies');
 const moviesState = tempMovies ? JSON.parse(tempMovies) : [];
 

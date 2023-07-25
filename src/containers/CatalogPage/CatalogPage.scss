@@ -1,8 +1,8 @@
 @import '../../styles/variables.scss';
 
 .catalog-page {
-    padding-top: 80px;
-    padding-bottom: 80px;
+    padding-top: 50px;
+    padding-bottom: 50px;
     @media screen and (max-width: 550px) {
         padding-top: 50px;
         padding-bottom: 50px;
@@ -12,8 +12,30 @@
         font-weight: 700;
         margin-bottom: $spacing-medium;
     }
+    &__types {
+        display: flex;
+    }
+    &__item {
+        margin-right: 20px;
+    }
+    &__type {
+        padding: 5px 10px;
+        font-size: 18px;
+        background-color: $white-color;
+        border-radius: $border-radius-small;
+        transition: color .2s linear, background-color .2s linear;
+        &:hover {
+            background-color: $green-color;
+            color: $white-color;
+        }
+        &--active {
+            background-color: $green-color;
+            color: $white-color;
+        }
+    }
     &__subtitle {
         font-size: 24px;
+        text-align: center;
         color: $green-color;
     }
     &__btn-container {
