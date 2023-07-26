@@ -27,6 +27,7 @@ export interface IFilmDetail  {
     releaseDate: string;
     voteAverage: number;
     posterPath: string;
+    backdropPath: string;
     genres: IGenre[];
     runTime: number;
     tagline: string;

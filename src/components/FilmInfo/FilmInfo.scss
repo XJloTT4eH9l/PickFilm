@@ -1,10 +1,54 @@
 @import '../../styles/variables.scss';
 
 .film-info {
-    max-width: 800px;
-    margin: 0 auto;
-    margin-top: 50px;
-    padding-bottom: 50px;
+    position: relative;
+    // max-width: 800px;
+    // margin: 0 auto;
+    padding-bottom: 80px;
+    &__background {
+        height: 50vh;
+        position: relative;
+        top: 0;
+        left: 0;
+        z-index: 10;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        &::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba($color: $black-color, $alpha: 0.7);
+        }
+    
+        &::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background-image: linear-gradient(to top, #0f0f0f, rgba($black-color, 0));
+        }
+    }
+    &__container {
+        position: relative;
+        z-index: 10;
+        margin-top: -300px;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 850px;
+        padding: 0 15px;
+        @media screen and (max-width: 900px) {
+            margin-top: -320px;
+        }
+        @media screen and (max-width: 5200px) {
+            margin-top: -350px;
+        }
+    }
     &__title {
         font-size: 30px;
         margin-bottom: $spacing-small;
@@ -17,18 +61,31 @@
         opacity: 0.6;
         margin-bottom: $spacing-medium;
     }
+    &__genre-list {
+        display: flex;
+        margin-bottom: 15px;
+    }
+    &__genre {
+        padding: 5px;
+        border: 1px solid $green-color;
+        border-radius: $border-radius-small;
+        &:not(:last-child) {
+            margin-right: 10px;
+        }
+    }
     &__back-drop {
         width: 100%;
         height: auto;
     }
     &__inner {
         display: flex;
-        align-items: center;
+        gap: 30px;
         margin-bottom: $spacing-big;
     }
     &__overwiev {
         font-size: 18px;
         line-height: 1.2;
+        margin-bottom: 20px;
         @media screen and (max-width: 700px) {
             font-size: 16px;
         }
@@ -48,10 +105,15 @@
             width: 70px;
         }
     }
-
+    &__left {
+        min-width: 300px;
+        @media screen and (max-width: 900px) {
+            display: none;
+        }
+    }
     &__poster {
-        width: 200px;
-        height: 300px;
+        width: 100%;
+        height: 100%;
         margin-right: $spacing-big;
         border-radius: $border-radius-small;
         @media screen and (max-width: 700px) {

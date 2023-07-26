@@ -1,0 +1,36 @@
+@import '../../styles/variables.scss';
+
+.cast {
+    &__title {
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+    &__list {
+        display: flex;
+        @media screen and (max-width: 550px) {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+    &__actor {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        text-align: center;
+        &:not(:last-child) {
+            margin-right: 20px;
+        }
+    }
+    &__img {
+        width: 80px;
+        height: 120px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 10px;
+        border-radius: $border-radius-medium;
+        // border-radius: 50%;
+    }
+    &__name {
+        font-size: 16px;
+    }
+}

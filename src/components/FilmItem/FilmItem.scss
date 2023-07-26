@@ -1,10 +1,13 @@
 @import '../../styles/variables.scss';
 
 .film-item {
+    padding: 20px 10px;
+    border-radius: $border-radius-medium;
     cursor: pointer;
     text-align: center;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     -webkit-tap-highlight-color: transparent;
+    background-color: rgba(255,255,255,0.15);
     &:hover &__title {
         color: $green-color;
     }

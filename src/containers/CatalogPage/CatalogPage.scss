@@ -14,6 +14,13 @@
     }
     &__types {
         display: flex;
+        margin-bottom: 30px;
+        @media screen and (max-width: 450px) {
+            flex-direction: column;
+            & li:not(:last-child) {
+                margin-bottom: 10px;
+            }
+        }
     }
     &__item {
         margin-right: 20px;

@@ -30,6 +30,7 @@ const MoviePage:FC = () => {
                 releaseDate: responce.data.release_date,
                 voteAverage: responce.data.vote_average,
                 posterPath: responce.data.poster_path,
+                backdropPath: responce.data.backdrop_path,
                 genres: responce.data.genres,
                 runTime: responce.data.runtime,
                 tagline: responce.data.tagline,
@@ -50,15 +51,13 @@ const MoviePage:FC = () => {
     
     return (
         <section className='movie-page'>
-            <div className="container">
-                { 
-                    loading ? <Spinner /> : (
-                        filmInfo && (
-                            <FilmInfo filmInfo={filmInfo}/>
-                        ) 
-                    )
-                }
-            </div>
+            { 
+                loading ? <Spinner /> : (
+                    filmInfo && (
+                        <FilmInfo filmInfo={filmInfo}/>
+                    ) 
+                )
+            }
         </section>
     )
 }
