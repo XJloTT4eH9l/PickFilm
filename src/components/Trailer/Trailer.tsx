@@ -1,4 +1,4 @@
-import { FC, useState, useEffect, useRef } from 'react';
+import { FC, useState, useEffect } from 'react';
 import { API_MOVIE, API_KEY } from '../../constants/api';
 import axios from 'axios';
 import Spinner from '../Ui/Spinner/Spinner';
@@ -18,8 +18,6 @@ interface Video {
 const Trailer:FC<TrailerProps> = ({ id }) => {
     const [video, setVideo] = useState<Video>();
     const [loading, setLoading] = useState<boolean>(false);
-
-    const iframeRef = useRef<HTMLIFrameElement | null>(null);
 
     const getVideo = async () => {
         try {
@@ -46,13 +44,6 @@ const Trailer:FC<TrailerProps> = ({ id }) => {
         getVideo();
     }, [id])
 
-    useEffect(() => {
-        if (iframeRef.current) {
-            const height = iframeRef.current.offsetWidth * 9 / 16 + 'px';
-            iframeRef.current.setAttribute('height', height);
-          }
-    }, []);
-
     return (
         <div className="trailer">
             {loading ? <Spinner /> : (
@@ -61,9 +52,7 @@ const Trailer:FC<TrailerProps> = ({ id }) => {
                         <h6 className='trailer__title'>{video.name}</h6>
                         <iframe
                             src={`https://www.youtube.com/embed/${video.key}`}
-                            width="100%"
-                            height="500px"
-                            ref={iframeRef}
+                            className='trailer__video'
                             title={video.name}
                             allowFullScreen
                         />

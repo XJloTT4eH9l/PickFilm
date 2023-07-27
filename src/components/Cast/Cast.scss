@@ -10,6 +10,7 @@
         @media screen and (max-width: 550px) {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
         }
     }
     &__actor {
