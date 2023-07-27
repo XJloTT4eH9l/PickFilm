@@ -1,5 +1,5 @@
 import { FC, useState, useEffect } from 'react';
-import { API_MOVIE, API_KEY } from '../../constants/api';
+import { API_MOVIE, API_TV, API_KEY } from '../../constants/api';
 import { BASE_POSTER } from '../../constants/api';
 import axios from 'axios';
 import Spinner from '../Ui/Spinner/Spinner';
@@ -8,6 +8,7 @@ import './Cast.scss';
 
 interface CastProps {
     id: number;
+    type: string;
 }
 
 interface Actor {
@@ -17,14 +18,17 @@ interface Actor {
     character: string;
 }
 
-const Cast:FC<CastProps> = ({ id }) => {
+const Cast:FC<CastProps> = ({ id, type }) => {
     const [cast, setCast] = useState<Actor[]>();
     const [loading, setLoading] = useState<boolean>(false);
 
     const getCast = async () => {
         try {
             setLoading(true);
-            const responce = await axios.get(API_MOVIE + '/' + id + '/credits' + API_KEY);
+            const responce = await axios.get( type === 'film' 
+                ? API_MOVIE + '/' + id + '/credits' + API_KEY
+                : API_TV + '/' + id + '/credits' + API_KEY
+             );
             if(responce.status === 200) {
                 setCast(responce.data.cast);
             }

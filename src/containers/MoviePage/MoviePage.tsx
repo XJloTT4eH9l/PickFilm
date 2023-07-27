@@ -12,15 +12,13 @@ import './MoviePage.scss';
 
 const MoviePage:FC = () => {
     const { id } = useParams();
-    const filmId = id?.slice(1);
     const [filmInfo, setFilmInfo] = useState<IFilmDetail>();
     const [loading, setLoading] = useState<boolean>(false);
 
     const getFilmInfo = async () => {
         try {
             setLoading(true);
-            const responce = await axios.get(API_MOVIE + '/' + filmId + API_KEY);
-            console.log(responce.data)
+            const responce = await axios.get(API_MOVIE + '/' + id + API_KEY);
 
             const filmObject: IFilmDetail = {
                 id : responce.data.id,

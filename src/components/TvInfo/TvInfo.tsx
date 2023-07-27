@@ -5,7 +5,13 @@ import { ITvDetail } from '../../types/types';
 import { useAppDispatch } from '../../hooks/reduxHooks';
 import { useAppSelector } from '../../hooks/reduxHooks';
 import { addTV, removeTV } from '../../store/watchListSlice';
+
 import posterPlaceholder from '../../assets/img/movie-placeholder.png';
+import star from '../../assets/img/star.png';
+import done from '../../assets/img/done.png';
+
+import Cast from '../Cast/Cast';
+import Trailer from '../Trailer/Trailer';
 import LinkBack from '../Ui/LinkBack/LinkBack';
 
 interface TvInfoProps {
@@ -24,6 +30,7 @@ const TvInfo:FC<TvInfoProps> = ({ tvInfo }) => {
         lastDate,
         voteAverage,
         posterPath,
+        backdropPath,
         tagline,
         genres,
         numberOfSeasons,
@@ -41,71 +48,51 @@ const TvInfo:FC<TvInfoProps> = ({ tvInfo }) => {
         dispatch(removeTV({id, posterPath, title:name}))
     }
     return (
-        <div className="film-info">
-            <LinkBack />
-            <h1 className='film-info__title'>{name}</h1>
-            <h2 className='film-info__subtitle'>{originalName}</h2>
-            <div className="film-info__inner">
-            <div className="film-info__left">
-                    {
-                        posterPath === null 
-                            ? <img className='film-info__poster' src={posterPlaceholder} alt={name} />
-                            : <img className='film-info__poster' src={BASE_POSTER + posterPath} alt={name} />
-                    }
-                </div>
-                <div className="film-info__details">
-                    <div className='film-info__detail'>
-                        <p className="film-info__text">Rating:</p>
-                        <p className="film-info__field">{voteAverage}</p>
+        <div className='film-info'>
+            <div
+                className='film-info__background'
+                style={{ backgroundImage: `url(${backdropPath ? BASE_POSTER + backdropPath : BASE_POSTER + posterPath})` }}
+            />
+            <div className="film-info__container">
+                <LinkBack />
+                <div className="film-info__inner">
+                    <div className="film-info__left">
+                        {
+                            posterPath === null
+                                ? <img className='film-info__poster' src={posterPlaceholder} alt={name} />
+                                : <img className='film-info__poster' src={BASE_POSTER + posterPath} alt={name} />
+                        }
                     </div>
-                    <div className='film-info__detail'>
-                        <p className="film-info__text">Year:</p>
-                        <p className="film-info__field">
-                            {
-                                inProduction 
-                                    ?  releaseDate.split('-')[0] + ' - present' 
-                                    :  releaseDate.split('-')[0] + ' - ' + lastDate.split('-')[0]
+                    <div className="film-info__right">
+                        <h1 className='film-info__title'>{name}</h1>
+                        <h2 className='film-info__subtitle'>{originalName}</h2>
+                        <div className="film-info__rating">
+                            <img className='film-info__star' src={star} alt='rating' />
+                            <p>{voteAverage.toFixed(1)} / 10</p>
+                        </div>
+                        <p className="film-info__date">{releaseDate.split('-')[0]}</p>
+                        <button
+                            className={tvInState ? 'film-info__btn film-info__btn--active' : 'film-info__btn'}
+                            onClick={tvInState ? removeFromWatchList : addToWatchList}
+                        >
+                            {tvInState 
+                                ? <p><img src={done} alt='remove'/>In watchlist</p> 
+                                : <p>Add to watchlist</p>
                             }
-                        </p>
-                    </div>
-                    <div className='film-info__detail'>
-                        <p className="film-info__text">Genre:</p>
-                        <ul className="film-info__field">
+                        </button>
+                        <ul className="film-info__genre-list">
                             {genres.map(genre => (
-                                <li key={genre.id}>{genre.name}</li>
+                                <li className='film-info__genre' key={genre.id}>{genre.name}</li>
                             ))}
                         </ul>
-                    </div>
-                    <div className='film-info__detail'>
-                        <p className="film-info__text">Seasons:</p>
-                        <p className="film-info__field">{numberOfSeasons}</p>
-                    </div>
-                    <div className='film-info__detail'>
-                        <p className="film-info__text">Episodes:</p>
-                        <p className="film-info__field">{numberOfEpisodes}</p>
-                    </div>
-                    {tagline && (
-                        <div className='film-info__detail tagline'>
-                            <p className="film-info__text">Tagline:</p>
-                            <p className="film-info__field">{tagline}</p>
+                         <div className="film-info__overview">
+                            <p className="film-info__overwiev">{overview}</p>
                         </div>
-                    )}
+                        <Cast id={id} type='tv' />       
+                    </div>
                 </div>
+                <Trailer id={id} type='tv' />
             </div>
-            {tagline && (
-                <div className='tagline--bottom'>
-                    <p className="film-info__text">Tagline:</p>
-                    <p className="film-info__field">{tagline}</p>
-                </div>
-            )}
-            <button 
-                className={tvInState ? 'film-info__btn film-info__btn--active' : 'film-info__btn'} 
-                onClick={tvInState ? removeFromWatchList : addToWatchList}
-            >
-                {tvInState ? 'Remove from watchlist' : 'Add to watchlist'}
-            </button>
-            <h3 className='film-info__title'>What is the series about:</h3>
-            <p className="film-info__overwiev">{overview}</p>
         </div>
     )
 }

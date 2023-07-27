@@ -11,6 +11,8 @@ import Trailer from '../Trailer/Trailer';
 import LinkBack from '../Ui/LinkBack/LinkBack';
 
 import posterPlaceholder from '../../assets/img/movie-placeholder.png';
+import star from '../../assets/img/star.png';
+import done from '../../assets/img/done.png';
 import './FilmInfo.scss';
 
 interface FilmInfoProps {
@@ -63,6 +65,22 @@ const FilmInfo: FC<FilmInfoProps> = ({ filmInfo }) => {
                     <div className="film-info__right">
                         <h1 className='film-info__title'>{title}</h1>
                         <h2 className='film-info__subtitle'>{originalTitle}</h2>
+                        <div className="film-info__rating">
+                            <img className='film-info__star' src={star} alt='rating' />
+                            <p>{voteAverage.toFixed(1)} / 10</p>
+                        </div>
+                        <p className="film-info__date">{releaseDate.split('-')[0]}</p>
+                        <button
+                            className={movieInState ? 'film-info__btn film-info__btn--active' : 'film-info__btn'}
+                            onClick={movieInState ? removeFromWatchList : addToWatchList}
+                        >
+                            {movieInState 
+                                ? (
+                                    <p><img src={done} alt='remove'/>In watchlist</p>
+                                ) 
+                                : <p>Add to watchlist</p>
+                            }
+                        </button>
                         <ul className="film-info__genre-list">
                             {genres.map(genre => (
                                 <li className='film-info__genre' key={genre.id}>{genre.name}</li>
@@ -71,56 +89,13 @@ const FilmInfo: FC<FilmInfoProps> = ({ filmInfo }) => {
                          <div className="film-info__overview">
                             <p className="film-info__overwiev">{overview}</p>
                         </div>
-                        <Cast id={id} />       
+                        <Cast id={id} type='film' />       
                     </div>
                 </div>
-                <Trailer id={id} />
-                {/* <button
-                    className={movieInState ? 'film-info__btn film-info__btn--active' : 'film-info__btn'}
-                    onClick={movieInState ? removeFromWatchList : addToWatchList}
-                >
-                    {movieInState ? 'Remove from watchlist' : 'Add to watchlist'}
-                </button> */}
+                <Trailer id={id} type='film' />
             </div>
         </div>
     )
 }
 
 export default FilmInfo
-
-
-
-{/* <div className="film-info__details">
-                        <div className='film-info__detail'>
-                            <p className="film-info__text">Rating:</p>
-                            <p className="film-info__field">{voteAverage}</p>
-                        </div>
-                        <div className='film-info__detail'>
-                            <p className="film-info__text">Year:</p>
-                            <p className="film-info__field">{releaseDate.split('-')[0]}</p>
-                        </div>
-                        <div className='film-info__detail'>
-                            <p className="film-info__text">Genre:</p>
-                            <ul className="film-info__field">
-                                {genres.map(genre => (
-                                    <li key={genre.id}>{genre.name}</li>
-                                ))}
-                            </ul>
-                        </div>
-                        <div className='film-info__detail'>
-                            <p className="film-info__text">Runtime:</p>
-                            <p className="film-info__field">{runTime} min</p>
-                        </div>
-                        {budget > 0 && (
-                            <div className='film-info__detail'>
-                                <p className="film-info__text">Budget:</p>
-                                <p className="film-info__field">{budget} $</p>
-                            </div>
-                        )}
-                        {tagline && (
-                            <div className='film-info__detail tagline'>
-                                <p className="film-info__text">Tagline:</p>
-                                <p className="film-info__field">{tagline}</p>
-                            </div>
-                        )}
-                    </div> */}

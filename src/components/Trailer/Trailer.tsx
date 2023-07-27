@@ -1,11 +1,13 @@
 import { FC, useState, useEffect } from 'react';
-import { API_MOVIE, API_KEY } from '../../constants/api';
+import { API_MOVIE, API_TV, API_KEY } from '../../constants/api';
 import axios from 'axios';
+import YouTube from 'react-youtube';
 import Spinner from '../Ui/Spinner/Spinner';
 import './Trailer.scss';
 
 interface TrailerProps {
     id: number;
+    type: string;
 }
 
 interface Video {
@@ -15,16 +17,18 @@ interface Video {
     key: string;
 }
 
-const Trailer:FC<TrailerProps> = ({ id }) => {
+const Trailer:FC<TrailerProps> = ({ id, type }) => {
     const [video, setVideo] = useState<Video>();
     const [loading, setLoading] = useState<boolean>(false);
 
     const getVideo = async () => {
         try {
             setLoading(true);
-            const responce = await axios.get(API_MOVIE + '/' + id + '/videos' + API_KEY);
+            const responce = await axios.get(type === 'film' 
+                ? API_MOVIE + '/' + id + '/videos' + API_KEY
+                : API_TV + '/' + id + '/videos' + API_KEY
+            );
             if(responce.status === 200) {
-                console.log(responce.data);
                 const data:Video[] = responce.data.results;
                 const trailerVideo = data.find(item => item.type === 'Trailer');
                 if(trailerVideo) {
@@ -50,11 +54,23 @@ const Trailer:FC<TrailerProps> = ({ id }) => {
                 video && (
                     <>
                         <h6 className='trailer__title'>{video.name}</h6>
-                        <iframe
-                            src={`https://www.youtube.com/embed/${video.key}`}
+                        <YouTube 
+                            videoId={video.key} 
                             className='trailer__video'
-                            title={video.name}
-                            allowFullScreen
+                            opts={
+                                {
+                                    width: '100%',
+                                    height: '100%',
+                                    playerVars: {
+                                        autoplay: 0,
+                                        controls: 1,
+                                        cc_load_policy: 0,
+                                        fs: 1,
+                                        rel: 0,
+                                        showinfo: 0,
+                                    },
+                                }
+                            } 
                         />
                     </>
                 )

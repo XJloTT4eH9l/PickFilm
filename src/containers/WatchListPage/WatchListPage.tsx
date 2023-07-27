@@ -1,6 +1,7 @@
 import { FC, useState } from 'react';
 import { useAppSelector } from '../../hooks/reduxHooks';
 
+import LinkBack from '../../components/Ui/LinkBack/LinkBack';
 import FilmItem from '../../components/FilmItem/FilmItem';
 import TvItem from '../../components/TvItem/TvItem';
 import arrow from '../../assets/img/arrow.svg';
@@ -17,6 +18,7 @@ const WatchListPage:FC = () => {
     return (
         <section className="watchlist-page">
             <div className="container">
+                <LinkBack />
                 <h1 className="watchlist-page__title">Watchlist</h1>
                 <div className="watchlist-page__movies">
                     <h2 

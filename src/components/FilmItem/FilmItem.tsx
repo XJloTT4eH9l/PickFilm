@@ -14,7 +14,7 @@ interface FilmItemProps {
 const FilmItem:FC<FilmItemProps> = ({ id, title, poster_path }) => {
     return (
         <li className='film-item'>
-            <Link className='film-item__link' to={`/movies/:${id}`}>
+            <Link className='film-item__link' to={`/movies/${id}`}>
                 {
                     poster_path == null ? (
                         <img 

@@ -52,6 +52,7 @@ export interface ITvDetail {
     lastDate: string;
     voteAverage: number;
     posterPath: string;
+    backdropPath: string;
     tagline: string;
     genres: IGenre[];
     numberOfSeasons: number;

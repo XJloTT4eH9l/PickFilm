@@ -11,7 +11,6 @@ import './TvPage.scss';
 
 const TvPage:FC = () => {
     const { id } = useParams();
-    const tvId = id?.slice(1);
 
     const [tvInfo, setTvInfo] = useState<ITvDetail>();
     const [loading, setLoading] = useState<boolean>(false);
@@ -20,29 +19,32 @@ const TvPage:FC = () => {
         try {
             setLoading(true);
 
-            const responce = await axios.get(API_TV + '/' + tvId + API_KEY);
+            const responce = await axios.get(API_TV + '/' + id + API_KEY);
 
-            const tvObject: ITvDetail = {
-                id : responce.data.id,
-                name: responce.data.name,
-                originalName: responce.data.original_name,
-                overview: responce.data.overview,
-                releaseDate: responce.data.first_air_date,
-                lastDate: responce.data.last_air_date,
-                voteAverage: responce.data.vote_average,
-                posterPath: responce.data.poster_path,
-                genres: responce.data.genres,
-                numberOfSeasons: responce.data.number_of_seasons,
-                numberOfEpisodes: responce.data.number_of_episodes,
-                tagline: responce.data.tagline,
-                inProduction: responce.data.in_production,
+            if(responce.status === 200) {
+                const tvObject: ITvDetail = {
+                    id : responce.data.id,
+                    name: responce.data.name,
+                    originalName: responce.data.original_name,
+                    overview: responce.data.overview,
+                    releaseDate: responce.data.first_air_date,
+                    lastDate: responce.data.last_air_date,
+                    voteAverage: responce.data.vote_average,
+                    posterPath: responce.data.poster_path,
+                    backdropPath: responce.data.backdrop_path,
+                    genres: responce.data.genres,
+                    numberOfSeasons: responce.data.number_of_seasons,
+                    numberOfEpisodes: responce.data.number_of_episodes,
+                    tagline: responce.data.tagline,
+                    inProduction: responce.data.in_production,
+                }
+    
+                setTvInfo(tvObject);
             }
-
-            setTvInfo(tvObject);
-            setLoading(false);
-            console.log(responce.data);
         } catch (error) {
             alert(error); 
+        } finally {
+            setLoading(false);
         }
     }
 

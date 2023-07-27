@@ -14,8 +14,10 @@ import Spinner from '../Ui/Spinner/Spinner';
 import './FilmRoulet.scss';
 
 const FilmRoulet = () => {
+    const rouletFilm = sessionStorage.getItem('rouletFilm');
+    const rouletFilmState = rouletFilm ? JSON.parse(rouletFilm) : null;
     const [type, setType] = useState<string>('Movie');
-    const [film, setFilm] = useState<IFilm>();
+    const [film, setFilm] = useState<IFilm>(rouletFilmState);
     const [loading, setLoading] = useState<boolean>(false);
 
     const [currentGenre, setCurrentGenre] = useState<IGenre>({ id: 18, name:'Drama' })
@@ -78,10 +80,12 @@ const FilmRoulet = () => {
             }
 
             setFilm(filmRes);
-            setLoading(false);
+            sessionStorage.setItem('rouletFilm', JSON.stringify(filmRes));
 
         } catch (error) {
             alert(error);
+        } finally {
+            setLoading(false);
         }
     }
 
@@ -118,13 +122,16 @@ const FilmRoulet = () => {
             }
 
             setFilm(filmRes);
-            setLoading(false);
+            sessionStorage.setItem('rouletFilm', JSON.stringify(filmRes));
 
         } catch (error) {
             alert(error);
+        } finally {
+            setLoading(false);
         }
         
     }
+
     useEffect(() => {
         setCurrentGenre({ id: 18, name:'Drama' });
     }, [type])
@@ -177,13 +184,13 @@ const FilmRoulet = () => {
             <div className="roulet__right">
                 { 
                     loading ? <Spinner /> : (
-                        film ? (
+                        film && film.releaseDate.length > 0 ? (
                             <div className="film">
                                 <img className='film__poster' src={BASE_POSTER + film.posterPath} alt={film.title} />
                                 <div className="film__content">
                                     <h2 className="film__title">
                                         <Link 
-                                            to={type === 'Movie' ? `/movies/:${film.id}` : `/tv/:${film.id}`}
+                                            to={type === 'Movie' ? `/movies/${film.id}` : `/tv/${film.id}`}
                                         >
                                             {film.title}
                                         </Link>

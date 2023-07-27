@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import BurgerButton from '../Ui/BurgerButton/BurgerButton';
 import './Header.scss';
 
@@ -10,9 +10,9 @@ const Header = () => {
         <header className='header'>
             <div className="container">
                 <div className="header__inner">
-                    <div className="header__logo">
+                    <Link to='/' className="header__logo">
                         <span>Pick<strong>Film</strong></span>
-                    </div>
+                    </Link>
 
                     <nav className='nav'>
                         <ul className="nav__list">
