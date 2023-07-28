@@ -1,4 +1,5 @@
 import { FC, useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { API_MOVIE, API_TV, API_KEY } from '../../constants/api';
 import { BASE_POSTER } from '../../constants/api';
 import axios from 'axios';
@@ -31,6 +32,7 @@ const Cast:FC<CastProps> = ({ id, type }) => {
              );
             if(responce.status === 200) {
                 setCast(responce.data.cast);
+                console.log(responce.data.cast);
             }
         } catch (error) {
             console.log(error);
@@ -56,12 +58,14 @@ const Cast:FC<CastProps> = ({ id, type }) => {
                                     key={actor.id} 
                                     className='cast__actor'
                                 >
-                                    <img 
-                                        className='cast__img' 
-                                        src={actor.profile_path === null ? actorPlaceholder : BASE_POSTER + actor.profile_path} 
-                                        alt={actor.name} 
-                                    />
-                                    <h4 className="cast__name">{actor.name}</h4>
+                                    <Link to={`/actor/${actor.id}`}>
+                                        <img 
+                                            className='cast__img' 
+                                            src={actor.profile_path === null ? actorPlaceholder : BASE_POSTER + actor.profile_path} 
+                                            alt={actor.name} 
+                                        />
+                                        <h4 className="cast__name">{actor.name}</h4>
+                                    </Link>
                                 </li>
                         ))}
                     </ul>

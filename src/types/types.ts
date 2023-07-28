@@ -65,3 +65,13 @@ export interface IMovie {
     title: string;
     posterPath: string;
 }
+
+export interface IActor {
+    id: number;
+    name: string;
+    biography: string;
+    birthday: string;
+    deathday: string | null;
+    placeOfBirth: string;
+    profilePath: string;
+}

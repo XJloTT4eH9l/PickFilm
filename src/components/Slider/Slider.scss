@@ -1,0 +1,9 @@
+@import '../../styles/variables.scss';
+
+.swiper {
+    padding: 0 40px !important; 
+}
+.swiper-button-prev,
+.swiper-button-next {
+  color: $green-color !important; /* Здесь указываем желаемый цвет */
+}

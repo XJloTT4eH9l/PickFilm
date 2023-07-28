@@ -1,0 +1,68 @@
+@import '../../styles/variables.scss';
+
+.actor-page {
+    &__container {
+        display: flex;
+        justify-content: space-between;
+        gap: $spacing-big;
+        @media screen and (max-width: 980px) {
+            flex-direction: column;
+        }
+    }
+    &__left {
+        display: flex;
+        justify-content: center;
+        gap: $spacing-medium;
+        @media screen and (max-width: 980px) {
+            align-items: center;
+        }
+    }
+    &__info {
+        &--mobile {
+            display: none;
+            @media screen and (max-width: 980px) {
+                display: block;
+            }
+        }
+        @media screen and (max-width: 980px) {
+            display: none;
+        }
+    }
+    &__poster {
+        width: 300px;
+        height: 450px;
+        border-radius: $border-radius-medium;
+        @media screen and (max-width: 980px) {
+            width: 200px;
+            height: 300px;
+        }
+        @media screen and (max-width: 520px) {
+            width: 100px;
+            height: 150px;
+        }
+    }
+    &__title {
+        font-size: 30px;
+        margin-bottom: $spacing-medium;
+        @media screen and (max-width: 520px) {
+            font-size: 22px;
+            margin-bottom: $spacing-small;
+        }
+    }
+    &__field {
+        font-size: 18px;
+        margin-bottom: $spacing-small;
+        color: $green-color;
+        @media screen and (max-width: 520px) {
+            font-size: 16px;
+        }
+    }
+    &__text {
+        font-size: 16px;
+        opacity: 0.7;
+        line-height: 1.2;
+        @media screen and (max-width: 520px) {
+            font-size: 14px;
+        }
+    }
+}

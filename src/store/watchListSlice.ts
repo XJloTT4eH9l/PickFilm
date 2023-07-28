@@ -13,9 +13,9 @@ const tempTvs = localStorage.getItem('tvs');
 const tvsState = tempTvs? JSON.parse(tempTvs) : [];
 
 const initialState: watchListState = {
-    movies: moviesState,
-    tvs: tvsState
-  }
+  movies: moviesState,
+  tvs: tvsState
+}
 
 const watchListSlice = createSlice({
   name: 'watchList',

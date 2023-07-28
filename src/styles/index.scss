@@ -53,6 +53,11 @@
       }
     }
 
+    ::selection {
+      background-color: rgba($green-color, 0.7); /* Це колір фону під виділеним текстом */
+      color: $white-color; /* Це колір тексту */
+    }
+
     @keyframes gradient {
       0% {
         background-position: 0% 50%;

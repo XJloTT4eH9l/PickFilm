@@ -10,6 +10,7 @@ const DISCOVER_TV = '/discover/tv';
 
 const MOVIE = '/movie';
 const TV = '/tv';
+const PERSONE = '/person/';
 
 const POPULAR_MOVIES = '/movie/popular';
 const TOP_RATED_MOVIES = '/movie/top_rated';
@@ -26,3 +27,4 @@ export const API_DISCOVER_TV: string = BASE_URL + DISCOVER_TV + API_KEY + '&lang
 export const API_POPULAR_MOVIES: string = BASE_URL + POPULAR_MOVIES + API_KEY + '&language=en-US';
 export const API_TOP_RATED_MOVIES: string = BASE_URL + TOP_RATED_MOVIES + API_KEY + '&language=en-US';
 export const API_BASE_MOVIES: string =  BASE_URL + '/movie/';
+export const API_ACTOR: string = BASE_URL + PERSONE;

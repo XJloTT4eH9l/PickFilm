@@ -7,6 +7,7 @@ import TvPage from '../TvPage/TvPage';
 import SearchPage from '../SearchPage/SearchPage';
 import WatchListPage from '../WatchListPage/WatchListPage';
 import CatalogPage from '../CatalogPage/CatalogPage';
+import ActorPage from '../ActorPage/ActorPage';
 
 import './App.scss';
 
@@ -21,6 +22,7 @@ function App() {
           <Route path='/search' element={ <SearchPage /> } />
           <Route path='/watchlist' element={ <WatchListPage /> } />
           <Route path='/catalog' element={ <CatalogPage /> } />
+          <Route path='/actor/:id' element={ <ActorPage /> }/>
         </Routes>
     </div>
   );
