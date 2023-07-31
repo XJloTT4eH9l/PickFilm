@@ -92,7 +92,7 @@ const FilmRoulet = () => {
     const getRandomTV = async () => {
         try {
             setLoading(true);
-            const page = `&page=1`;
+            const page = `&page=${Math.floor(Math.random() * 10) + 1}`;
             const genre = `&with_genres=${currentGenre.id}`;
             const score = `&vote_average.gte=${rating.id === 1 ? 1 : rating.name[1]}`;
 
