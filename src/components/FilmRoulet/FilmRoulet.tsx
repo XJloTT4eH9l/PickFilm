@@ -61,11 +61,13 @@ const FilmRoulet = () => {
             }
 
             const limit = data.data.results.length;
-            const randomFilmNumber = Math.floor(Math.random() * limit) + 1;
+            const randomFilmNumber = Math.floor(Math.random() * limit);
             const randomFilm = data.data.results[randomFilmNumber];
-            const overview = randomFilm.overview.length > 250 
-                ? randomFilm.overview.slice(0, 250) + '...'
-                : randomFilm.overview;
+            const overview = randomFilm.overview.length > 0 
+                ? randomFilm.overview.length > 250 
+                    ? randomFilm.overview.slice(0, 250) + '...'
+                    : randomFilm.overview
+                : 'No overview';
             const genresParsed = genresParser(randomFilm.genre_ids);
             const genres = [genresParsed[0], genresParsed[1]];
             
@@ -83,7 +85,7 @@ const FilmRoulet = () => {
             sessionStorage.setItem('rouletFilm', JSON.stringify(filmRes));
 
         } catch (error) {
-            alert(error);
+            console.log(error);
         } finally {
             setLoading(false);
         }
@@ -103,11 +105,14 @@ const FilmRoulet = () => {
             }
 
             const limit = data.data.results.length;
-            const randomFilmNumber = Math.floor(Math.random() * limit) + 1;
+            const randomFilmNumber = Math.floor(Math.random() * limit);
             const randomFilm = data.data.results[randomFilmNumber];
-            const overview = randomFilm.overview.length > 250 
-                ? randomFilm.overview.slice(0, 250) + '...'
-                : randomFilm.overview;
+            console.log(randomFilm);
+            const overview = randomFilm.overview.length > 0 
+                ? randomFilm.overview.length > 250 
+                    ? randomFilm.overview.slice(0, 250) + '...'
+                    : randomFilm.overview
+                : 'No overview';
             const genresParsed = genresParser(randomFilm.genre_ids);
             const genres = [genresParsed[0], genresParsed[1]];
             
@@ -125,7 +130,7 @@ const FilmRoulet = () => {
             sessionStorage.setItem('rouletFilm', JSON.stringify(filmRes));
 
         } catch (error) {
-            alert(error);
+            console.log(error);
         } finally {
             setLoading(false);
         }
