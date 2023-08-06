@@ -51,14 +51,12 @@ const ActorPage = () => {
                                 <img className='actor-page__poster' src={BASE_POSTER + actorInfo.profilePath} alt={actorInfo.name} />
                                 <div className="actor-page__info--mobile">
                                     <h1 className='actor-page__title'>{actorInfo.name}</h1>
-                                    {/* <p className='actor-page__field'>{actorInfo.birthday}</p> */}
                                     <p className='actor-page__field'>{actorInfo.placeOfBirth}</p>
                                 </div>
                             </div>
                             <div className="actor-page__right">
                                 <div className="actor-page__info">
                                     <h1 className='actor-page__title'>{actorInfo.name}</h1>
-                                    {/* <p className='actor-page__field'>{actorInfo.birthday}</p> */}
                                     <p className='actor-page__field'>{actorInfo.placeOfBirth}</p>
                                 </div>
                                 <p className="actor-page__text">{actorInfo.biography}</p>

@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import { NavLink, Link } from 'react-router-dom';
+import useAuth from '../../hooks/useAuth';
 import BurgerButton from '../Ui/BurgerButton/BurgerButton';
 import './Header.scss';
 
 const Header = () => {
     const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
+    const { isAuth, email } = useAuth();
 
     return (
         <header className='header'>
@@ -66,8 +68,10 @@ const Header = () => {
                         mobileMenuOpen={mobileMenuOpen} 
                         setMobileMenuOpen={setMobileMenuOpen} 
                     />
-
-                     <NavLink className='nav__link' to='/watchlist'>Watchlist</NavLink>
+                    { isAuth 
+                        ? <NavLink className='nav__link' to='/watchlist'>Watchlist</NavLink> 
+                        : <Link className='nav__login' to='/login'>Log in</Link>
+                    }
                 </div>
             </div>
         </header>

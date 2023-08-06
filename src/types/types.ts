@@ -75,3 +75,8 @@ export interface IActor {
     placeOfBirth: string;
     profilePath: string;
 }
+
+export interface IUserData {
+    email: string;
+    password: string;
+}

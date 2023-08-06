@@ -5,6 +5,7 @@ import { IFilmDetail } from '../../types/types';
 import { useAppDispatch } from '../../hooks/reduxHooks';
 import { useAppSelector } from '../../hooks/reduxHooks';
 import { addMovie, removeMovie } from '../../store/watchListSlice';
+import useAuth from '../../hooks/useAuth';
 
 import Cast from '../Cast/Cast';
 import Trailer from '../Trailer/Trailer';
@@ -21,6 +22,7 @@ interface FilmInfoProps {
 
 const FilmInfo: FC<FilmInfoProps> = ({ filmInfo }) => {
     const dispatch = useAppDispatch();
+    const { isAuth } = useAuth();
     const films = useAppSelector(state => state.watchList.movies);
     const {
         id,
@@ -70,17 +72,19 @@ const FilmInfo: FC<FilmInfoProps> = ({ filmInfo }) => {
                             <p>{voteAverage.toFixed(1)} / 10</p>
                         </div>
                         <p className="film-info__date">{releaseDate.split('-')[0]}</p>
-                        <button
-                            className={movieInState ? 'film-info__btn film-info__btn--active' : 'film-info__btn'}
-                            onClick={movieInState ? removeFromWatchList : addToWatchList}
-                        >
-                            {movieInState 
-                                ? (
-                                    <p><img src={done} alt='remove'/>In watchlist</p>
-                                ) 
-                                : <p>Add to watchlist</p>
-                            }
-                        </button>
+                        {isAuth && (
+                            <button
+                                className={movieInState ? 'film-info__btn film-info__btn--active' : 'film-info__btn'}
+                                onClick={movieInState ? removeFromWatchList : addToWatchList}
+                            >
+                                {movieInState 
+                                    ? (
+                                        <p><img src={done} alt='remove'/>In watchlist</p>
+                                    ) 
+                                    : <p>Add to watchlist</p>
+                                }
+                            </button>
+                        )}
                         <ul className="film-info__genre-list">
                             {genres.map(genre => (
                                 <li className='film-info__genre' key={genre.id}>{genre.name}</li>

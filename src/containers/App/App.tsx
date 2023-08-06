@@ -8,6 +8,8 @@ import SearchPage from '../SearchPage/SearchPage';
 import WatchListPage from '../WatchListPage/WatchListPage';
 import CatalogPage from '../CatalogPage/CatalogPage';
 import ActorPage from '../ActorPage/ActorPage';
+import LogInPage from '../LogInPage/LogInPage';
+import SignInPage from '../SignInPage/SignInPage';
 
 import './App.scss';
 
@@ -23,6 +25,8 @@ function App() {
           <Route path='/watchlist' element={ <WatchListPage /> } />
           <Route path='/catalog' element={ <CatalogPage /> } />
           <Route path='/actor/:id' element={ <ActorPage /> }/>
+          <Route path='/login' element={ <LogInPage /> } />
+          <Route path='/signup' element={ <SignInPage /> } />
         </Routes>
     </div>
   );

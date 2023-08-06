@@ -1,9 +1,12 @@
 @import '../../styles/variables.scss';
 
 .header {
-    padding: 30px 0;
+    padding: 20px 0;
     background-color: $black-color;
-    position: relative;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
     z-index: 100;
     &__inner {
         display: flex;
@@ -65,6 +68,17 @@
         &:hover {
             color: $green-color;
         }    
+    }
+    &__login {
+        font-size: 18px;
+        padding: 10px 25px;
+        border-radius: $border-radius-small;
+        border: 2px solid;
+        border-color: $green-color;
+        transition: background-color 0.2s linear;
+        &:hover {
+            background-color: $green-color;
+        }
     }
     &__list {
         display: flex;

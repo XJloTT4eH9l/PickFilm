@@ -1,0 +1,72 @@
+@import '../../styles/variables.scss';
+
+.form {
+    width: 500px;
+    margin: 0 auto;
+    &__title {
+        margin-bottom: $spacing-big;
+        font-size: 28px;
+        text-align: center;
+        // color: $green-color;
+    }
+    &__field {
+        margin-bottom: $spacing-small;
+        height: 100px;
+    }
+    &__label {
+        display: block;
+        font-size: 18px;
+        margin-bottom: $spacing-small;
+    }
+    &__input {
+        width: 100%;
+        padding: 10px 15px;
+        border-radius: $border-radius-small;
+        border: 2px solid transparent;
+        transition: border-color 0.2s linear;
+        margin-bottom: $spacing-small;
+        &:focus {
+            border-color: $green-color;
+        }
+        &--error {
+            border-color: $red-color;
+        }
+    }
+    &__error {
+        font-size: 14px;
+        color: $red-color;
+        &--center {
+            text-align: center;
+            margin-bottom: $spacing-medium;
+        }
+    }
+    &__submit {
+        display: block;
+        min-width: 100px;
+        padding: 10px 15px;
+        background-color: $green-color;
+        margin: 0 auto;
+        border-radius: $border-radius-small;
+        color: #fff;
+        margin-bottom: $spacing-medium;
+        transition: opacity 0.2s linear, transform 0.2s ease-in-out;
+        &:disabled {
+            opacity: 0.7;
+            cursor: default;
+            background-color: grey;
+            &:hover {
+                transform: scale(1);
+            }
+        }
+        &:hover {
+            transform: scale(1.05);
+        }
+    }
+    &__message {
+        text-align: center;
+        font-size: 18px;
+        & a {
+            color: $green-color !important;
+        }
+    }
+}
