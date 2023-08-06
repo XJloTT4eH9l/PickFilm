@@ -2,11 +2,19 @@ import { useState } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import BurgerButton from '../Ui/BurgerButton/BurgerButton';
+import ProfileSideBar from '../ProfileSideBar/ProfileSidebar';
+import profile from '../../assets/img/profile.png';
 import './Header.scss';
 
 const Header = () => {
     const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
+    const [profileOpen, setProfileOpen] = useState<boolean>(false);
     const { isAuth, email } = useAuth();
+
+    const onProfile = () => {
+        document.body.style.overflow = 'hidden';
+        setProfileOpen(true);
+    }
 
     return (
         <header className='header'>
@@ -68,8 +76,18 @@ const Header = () => {
                         mobileMenuOpen={mobileMenuOpen} 
                         setMobileMenuOpen={setMobileMenuOpen} 
                     />
-                    { isAuth 
-                        ? <NavLink className='nav__link' to='/watchlist'>Watchlist</NavLink> 
+                    {isAuth 
+                        ? (
+                            <>
+                                <button className='header__profile' onClick={onProfile}>
+                                    <img src={profile} alt='profile'/>
+                                </button>
+                                <ProfileSideBar
+                                    profileOpen={profileOpen}
+                                    setProfileOpen={setProfileOpen} 
+                                />
+                            </>
+                        )
                         : <Link className='nav__login' to='/login'>Log in</Link>
                     }
                 </div>

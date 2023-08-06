@@ -22,6 +22,22 @@
             }
         }
     }
+    &__profile {
+        padding: 10px;
+        background-color: $white-color;
+        border-radius: $border-radius-small;
+        transition: background-color 0.2s linear;
+        @media screen and (max-width: 600px) {
+            padding: 5px;
+        }
+        &:hover {
+            background-color: $green-color;
+        }
+        & img {
+            width: 30px;
+            height: 30px;
+        }
+    }
 }
 
 .mobile-menu {

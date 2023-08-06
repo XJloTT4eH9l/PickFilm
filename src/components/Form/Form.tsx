@@ -29,10 +29,10 @@ const Form:FC<FormProps> = ({ type }) => {
     });
 
     const onSubmit = handleSubmit((userInfo) => {
-        setLoading(true);
         const auth = getAuth();
         const { email, password } = userInfo;
         if(type === 'Login') {
+            setLoading(true);
             signInWithEmailAndPassword(auth, email, password)
             .then(({user}) => {
                 console.log(user);
@@ -44,7 +44,9 @@ const Form:FC<FormProps> = ({ type }) => {
                 navigate("/");
             })
             .catch(() => setError('Invalid email or password'))
+            setLoading(false);
         } else {
+            setLoading(true);
             createUserWithEmailAndPassword(auth, email, password)
             .then(({user}) => {
                 console.log(user);
@@ -56,8 +58,8 @@ const Form:FC<FormProps> = ({ type }) => {
                 navigate("/");
             })
             .catch(() => setError('Cant register user with this mail or password'))
+            setLoading(false);
         }
-        setLoading(false);
     })
 
     return (
