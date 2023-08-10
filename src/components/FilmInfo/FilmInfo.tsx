@@ -1,15 +1,16 @@
-import { FC } from 'react';
+import { FC, useState, useEffect } from 'react';
 import { BASE_POSTER } from '../../constants/api';
 import { IFilmDetail } from '../../types/types';
 
-import { useAppDispatch } from '../../hooks/reduxHooks';
-import { useAppSelector } from '../../hooks/reduxHooks';
-import { addMovie, removeMovie } from '../../store/watchListSlice';
+import db from '../../firebase';
+import { onSnapshot, collection, addDoc, doc, deleteDoc } from 'firebase/firestore';
 import useAuth from '../../hooks/useAuth';
+import { IFavMovie } from '../../types/types';
 
 import Cast from '../Cast/Cast';
 import Trailer from '../Trailer/Trailer';
 import LinkBack from '../Ui/LinkBack/LinkBack';
+import Spinner from '../Ui/Spinner/Spinner';
 
 import posterPlaceholder from '../../assets/img/movie-placeholder.png';
 import star from '../../assets/img/star.png';
@@ -21,9 +22,9 @@ interface FilmInfoProps {
 }
 
 const FilmInfo: FC<FilmInfoProps> = ({ filmInfo }) => {
-    const dispatch = useAppDispatch();
-    const { isAuth } = useAuth();
-    const films = useAppSelector(state => state.watchList.movies);
+    const { isAuth, email } = useAuth();
+    const [movieInFav, setMovieInFav] = useState<IFavMovie | null>();
+    const [loading, setLoading] = useState<boolean>(false);
     const {
         id,
         title,
@@ -34,19 +35,60 @@ const FilmInfo: FC<FilmInfoProps> = ({ filmInfo }) => {
         releaseDate,
         voteAverage,
         genres,
-        runTime,
-        tagline,
-        budget
     } = filmInfo;
-    const movieInState = films.find(movie => movie.id === id);
 
-    const addToWatchList = () => {
-        dispatch(addMovie({ id, posterPath, title }))
+    const addToWatchList = async () => {
+        try {
+            setLoading(true);
+            const collectionRef = collection(db, 'favMovies');
+            const payload = {
+                movieId: id,
+                title,
+                posterPath,
+                userEmail: email 
+            }
+            await addDoc(collectionRef, payload);
+        } catch (error) {
+            console.log(error);
+        } finally {
+            setLoading(false);
+        }
     }
 
-    const removeFromWatchList = () => {
-        dispatch(removeMovie({ id, posterPath, title }))
+    const removeFromWatchList = async () => {
+        if(movieInFav) {
+            try {
+                setLoading(true);
+                const docRef = doc(db, 'favMovies', movieInFav.id);
+                await deleteDoc(docRef)
+                setMovieInFav(null);
+            } catch (error) {
+                console.log(error);
+            } finally {
+                setLoading(false)
+            }
+        }
     }
+
+    useEffect(() => {
+        const filmsCollection = collection(db, 'favMovies');
+        if(isAuth) {
+            try {
+                onSnapshot(filmsCollection, (snapshot) => {
+                    const movies: IFavMovie[] = snapshot.docs.map((doc) => ({
+                        id: doc.id,
+                        ...doc.data() as Omit<IFavMovie, 'id'>,
+                    }));
+                    const inFav = movies.find(movie => movie.movieId === id && movie.userEmail === email);
+                    if(inFav) {
+                        setMovieInFav(inFav);
+                    }
+                })
+            } catch (error) {
+                console.log(error);
+            }
+        }
+    }, [])
 
     return (
         <div className='film-info'>
@@ -73,17 +115,19 @@ const FilmInfo: FC<FilmInfoProps> = ({ filmInfo }) => {
                         </div>
                         <p className="film-info__date">{releaseDate.split('-')[0]}</p>
                         {isAuth && (
-                            <button
-                                className={movieInState ? 'film-info__btn film-info__btn--active' : 'film-info__btn'}
-                                onClick={movieInState ? removeFromWatchList : addToWatchList}
-                            >
-                                {movieInState 
-                                    ? (
-                                        <p><img src={done} alt='remove'/>In watchlist</p>
-                                    ) 
-                                    : <p>Add to watchlist</p>
-                                }
-                            </button>
+                            loading ? <Spinner /> : (
+                                <button
+                                    className={movieInFav ? 'film-info__btn film-info__btn--active' : 'film-info__btn'}
+                                    onClick={movieInFav ? removeFromWatchList : addToWatchList}
+                                >
+                                    {movieInFav 
+                                        ? (
+                                            <p><img src={done} alt='remove'/>In watchlist</p>
+                                        ) 
+                                        : <p>Add to watchlist</p>
+                                    }
+                                </button>
+                            )
                         )}
                         <ul className="film-info__genre-list">
                             {genres.map(genre => (

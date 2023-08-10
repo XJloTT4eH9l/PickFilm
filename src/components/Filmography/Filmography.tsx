@@ -28,7 +28,6 @@ const Filmography:FC<FilmSliderProps> = ({ id }) => {
             const responce = await axios.get(API_ACTOR + id + '/movie_credits' + API_KEY);
             if(responce.status === 200) {
                 setFilms(responce.data.cast);
-                console.log(responce.data.cast);
             }
         } catch (error) {
             console.log(error);

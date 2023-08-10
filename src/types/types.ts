@@ -66,6 +66,22 @@ export interface IMovie {
     posterPath: string;
 }
 
+export interface IFavMovie {
+    id: string;
+    movieId: number;
+    posterPath: string;
+    title: string;
+    userEmail: string;
+}
+
+export interface IFavMovie {
+    id: string;
+    movieId: number;
+    posterPath: string;
+    title: string;
+    userEmail: string;
+}
+
 export interface IActor {
     id: number;
     name: string;

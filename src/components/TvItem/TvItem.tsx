@@ -12,7 +12,7 @@ interface TvItemProps {
 const TvItem:FC<TvItemProps> = ({ id, title, poster_path }) => {
     return (
         <li className='film-item'>
-            <Link className='film-item__link' to={`/tv/:${id}`}>
+            <Link className='film-item__link' to={`/tv/${id}`}>
                 {
                     poster_path == null ? (
                         <img 

@@ -28,7 +28,6 @@ const ActorPage = () => {
                     profilePath: responce.data.profile_path
                 }
                 setActorInfo(actor);
-                console.log(responce.data);
             }
         } catch (error) {
             console.log(error);

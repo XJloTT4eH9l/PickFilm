@@ -21,7 +21,7 @@ const FilmRoulet = () => {
     const [loading, setLoading] = useState<boolean>(false);
 
     const [currentGenre, setCurrentGenre] = useState<IGenre>({ id: 18, name:'Drama' })
-    const [rating, setRating] = useState<IGenre>({ id: 1, name: 'Any rating' });
+    const [rating, setRating] = useState<IGenre>({ id: 3, name: '>7' });
 
     const [genres, setGenres] = useState<IGenre[]>([]);
     const [genresTV, setGenresTV] = useState<IGenre[]>([]);

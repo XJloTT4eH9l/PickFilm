@@ -1,6 +1,7 @@
 import { useState, useEffect, FC } from 'react';
 import { useParams } from 'react-router-dom';
 
+
 import { IFilmDetail } from '../../types/types';
 import { API_KEY, API_MOVIE } from '../../constants/api';
 

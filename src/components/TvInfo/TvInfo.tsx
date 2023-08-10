@@ -1,10 +1,11 @@
-import { FC } from 'react';
+import { FC, useState, useEffect } from 'react';
 import { BASE_POSTER } from '../../constants/api';
 import { ITvDetail } from '../../types/types';
 
-import { useAppDispatch } from '../../hooks/reduxHooks';
-import { useAppSelector } from '../../hooks/reduxHooks';
-import { addTV, removeTV } from '../../store/watchListSlice';
+import db from '../../firebase';
+import useAuth from '../../hooks/useAuth';
+import { IFavMovie } from '../../types/types';
+import { onSnapshot, collection, addDoc, doc, deleteDoc } from 'firebase/firestore';
 
 import posterPlaceholder from '../../assets/img/movie-placeholder.png';
 import star from '../../assets/img/star.png';
@@ -13,14 +14,16 @@ import done from '../../assets/img/done.png';
 import Cast from '../Cast/Cast';
 import Trailer from '../Trailer/Trailer';
 import LinkBack from '../Ui/LinkBack/LinkBack';
+import Spinner from '../Ui/Spinner/Spinner';
 
 interface TvInfoProps {
     tvInfo: ITvDetail
 }
 
 const TvInfo:FC<TvInfoProps> = ({ tvInfo }) => {
-    const dispatch = useAppDispatch();
-    const tvs = useAppSelector(state => state.watchList.tvs);
+    const { isAuth, email } = useAuth();
+    const [seriesInFav, setSeriesInFav] = useState<IFavMovie | null>();
+    const [loading, setLoading] = useState<boolean>(false); 
     const {
         id,
         name,
@@ -38,15 +41,59 @@ const TvInfo:FC<TvInfoProps> = ({ tvInfo }) => {
         inProduction,
     } = tvInfo;
 
-    const tvInState = tvs.find(tv => tv.id === id);
 
-    const addToWatchList = () => {
-        dispatch(addTV({id, posterPath, title:name}))
+    const addToWatchList = async () => {
+        try {
+            setLoading(true);
+            const collectionRef = collection(db, 'favSeries');
+            const payload = {
+                movieId: id,
+                title: name,
+                posterPath,
+                userEmail: email 
+            }
+            await addDoc(collectionRef, payload);
+        } catch (error) {
+            console.log(error);
+        } finally {
+            setLoading(false);
+        }
     }
 
-    const removeFromWatchList = () => {
-        dispatch(removeTV({id, posterPath, title:name}))
+    const removeFromWatchList = async () => {
+        if(seriesInFav) {
+            try {
+                setLoading(true);
+                const docRef = doc(db, 'favSeries', seriesInFav.id);
+                await deleteDoc(docRef)
+                setSeriesInFav(null);
+            } catch (error) {
+                console.log(error);
+            } finally {
+                setLoading(false)
+            }
+        }
     }
+
+    useEffect(() => {
+        const filmsCollection = collection(db, 'favSeries');
+        if(isAuth) {
+            try {
+                onSnapshot(filmsCollection, (snapshot) => {
+                    const movies: IFavMovie[] = snapshot.docs.map((doc) => ({
+                        id: doc.id,
+                        ...doc.data() as Omit<IFavMovie, 'id'>,
+                    }));
+                    const inFav = movies.find(movie => movie.movieId === id && movie.userEmail === email);
+                    if(inFav) {
+                        setSeriesInFav(inFav);
+                    }
+                })
+            } catch (error) {
+                console.log(error);
+            }
+        }
+    }, [])
     return (
         <div className='film-info'>
             <div
@@ -71,15 +118,17 @@ const TvInfo:FC<TvInfoProps> = ({ tvInfo }) => {
                             <p>{voteAverage.toFixed(1)} / 10</p>
                         </div>
                         <p className="film-info__date">{releaseDate.split('-')[0]}</p>
-                        <button
-                            className={tvInState ? 'film-info__btn film-info__btn--active' : 'film-info__btn'}
-                            onClick={tvInState ? removeFromWatchList : addToWatchList}
-                        >
-                            {tvInState 
-                                ? <p><img src={done} alt='remove'/>In watchlist</p> 
-                                : <p>Add to watchlist</p>
-                            }
-                        </button>
+                        {loading ? <Spinner /> : (
+                            <button
+                                className={seriesInFav ? 'film-info__btn film-info__btn--active' : 'film-info__btn'}
+                                onClick={seriesInFav ? removeFromWatchList : addToWatchList}
+                            >
+                                {seriesInFav 
+                                    ? <p><img src={done} alt='remove'/>In watchlist</p> 
+                                    : <p>Add to watchlist</p>
+                                }
+                            </button>
+                        )}
                         <ul className="film-info__genre-list">
                             {genres.map(genre => (
                                 <li className='film-info__genre' key={genre.id}>{genre.name}</li>

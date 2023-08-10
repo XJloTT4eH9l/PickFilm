@@ -6,7 +6,7 @@ import posterPlaceholder from '../../assets/img/movie-placeholder.png';
 import './FilmItem.scss';
 
 interface FilmItemProps {
-    id: number;
+    id: number | string;
     title: string;
     poster_path: string;
 }

@@ -32,7 +32,6 @@ const Cast:FC<CastProps> = ({ id, type }) => {
              );
             if(responce.status === 200) {
                 setCast(responce.data.cast);
-                console.log(responce.data.cast);
             }
         } catch (error) {
             console.log(error);
