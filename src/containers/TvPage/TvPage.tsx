@@ -54,15 +54,13 @@ const TvPage:FC = () => {
 
     return (
         <section className="tv-page">
-            <div className="container">
-                { 
-                    loading ? <Spinner /> : (
-                        tvInfo && (
-                            <TvInfo tvInfo={tvInfo}/>
-                        ) 
-                    )
-                }
-            </div>
+            { 
+                loading ? <Spinner /> : (
+                    tvInfo && (
+                        <TvInfo tvInfo={tvInfo}/>
+                    ) 
+                )
+            }
         </section>
     )
 }

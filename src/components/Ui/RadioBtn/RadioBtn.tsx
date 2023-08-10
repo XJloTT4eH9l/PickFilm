@@ -4,14 +4,10 @@ import './RadioBtn.scss';
 interface RadioBtnProps {
     id: string;
     type: string;
-    setType: (t: string) => void;
+    handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const RadioBtn:FC<RadioBtnProps> = ({id, type, setType }) => {
-    const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setType(e.target.id);
-    }
-
+const RadioBtn:FC<RadioBtnProps> = ({ id, type, handleChange }) => {
     return (
         <div className='radio-btn__container'>
             <input
@@ -20,7 +16,7 @@ const RadioBtn:FC<RadioBtnProps> = ({id, type, setType }) => {
                 name={type}
                 className='radio-btn'
                 checked={type === id}
-                onChange={(e) => changeHandler(e)} 
+                onChange={(e) => handleChange(e)} 
             />
             <label htmlFor={id}>{id}</label>
         </div>

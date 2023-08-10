@@ -4,14 +4,16 @@
     position: relative;
     padding-bottom: 80px;
     &__background {
-        height: 50vh;
+        height: 70vh;
         position: relative;
         top: 0;
         left: 0;
         z-index: 10;
-        background-position: center;
         background-size: cover;
         background-repeat: no-repeat;
+        @media screen and (max-width: 600px) {
+            background-position: center;
+        }
         &::before {
             content: "";
             position: absolute;
@@ -35,17 +37,11 @@
     &__container {
         position: relative;
         z-index: 10;
-        margin-top: -300px;
+        margin-top: -470px;
         margin-left: auto;
         margin-right: auto;
         max-width: 850px;
         padding: 0 15px;
-        @media screen and (max-width: 900px) {
-            margin-top: -320px;
-        }
-        @media screen and (max-width: 5200px) {
-            margin-top: -350px;
-        }
     }
     &__title {
         font-size: 30px;

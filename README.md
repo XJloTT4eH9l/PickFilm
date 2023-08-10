@@ -13,6 +13,7 @@ Web application for choosing a movie to watch
 - Redux tool kit
 - Sass(SCSS)
 - REST API (used [TMBD API](https://www.themoviedb.org/))
+- Firebase / Firestore
 
 
 ## Page speed insight

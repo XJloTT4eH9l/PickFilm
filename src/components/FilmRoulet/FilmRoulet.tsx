@@ -16,7 +16,10 @@ import './FilmRoulet.scss';
 const FilmRoulet = () => {
     const rouletFilm = sessionStorage.getItem('rouletFilm');
     const rouletFilmState = rouletFilm ? JSON.parse(rouletFilm) : null;
-    const [type, setType] = useState<string>('Movie');
+    const rouletType = sessionStorage.getItem('rouletType');
+    const rouletTypeState = rouletType ? JSON.parse(rouletType) : 'Movie';
+
+    const [type, setType] = useState<string>(rouletTypeState);
     const [film, setFilm] = useState<IFilm>(rouletFilmState);
     const [loading, setLoading] = useState<boolean>(false);
 
@@ -107,7 +110,6 @@ const FilmRoulet = () => {
             const limit = data.data.results.length;
             const randomFilmNumber = Math.floor(Math.random() * limit);
             const randomFilm = data.data.results[randomFilmNumber];
-            console.log(randomFilm);
             const overview = randomFilm.overview.length > 0 
                 ? randomFilm.overview.length > 250 
                     ? randomFilm.overview.slice(0, 250) + '...'
@@ -137,6 +139,11 @@ const FilmRoulet = () => {
         
     }
 
+    const typeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setType(e.target.id);
+        sessionStorage.setItem('rouletType', JSON.stringify(e.target.id));
+    }
+
     useEffect(() => {
         setCurrentGenre({ id: 18, name:'Drama' });
     }, [type])
@@ -153,12 +160,12 @@ const FilmRoulet = () => {
                         <RadioBtn
                             id='Movie'
                             type={type}
-                            setType={setType} 
+                            handleChange={typeChange}
                         />
                         <RadioBtn
                             id='TV'
                             type={type}
-                            setType={setType} 
+                            handleChange={typeChange}
                         />
                     </div>
                 </div>
