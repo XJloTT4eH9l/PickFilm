@@ -9,6 +9,12 @@ export interface IFilmShort {
     poster_path: string;
 }
 
+export interface ITvShort {
+    id: number;
+    name: string;
+    poster_path: string;
+}
+
 export interface IFilm {
     id: number;
     title: string;

@@ -23,8 +23,9 @@ const ProfileSideBar:FC<ProfileSideBarProps> = ({ profileOpen, setProfileOpen })
     }
 
     const onLogOut = () => {
-        naigate('/');
         setProfileOpen(false);
+        document.body.style.overflow = '';
+        naigate('/');
         dispatch(removeUser());
     }
 

@@ -1,17 +1,19 @@
 import { FC } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { IFilmShort } from '../../types/types';
+// import { IFilmShort, ITvShort } from '../../types/types';
 import { Navigation } from 'swiper/modules';
 import FilmItem from '../FilmItem/FilmItem';
+import TvItem from '../TvItem/TvItem';
 import './Slider.scss';
 import 'swiper/css';
 import 'swiper/css/navigation';
 
 interface SliderProps {
-    films: IFilmShort[];
+    films: any[];
+    type: string;
 }
 
-const Slider:FC<SliderProps> = ({ films }) => {
+const Slider:FC<SliderProps> = ({ films, type }) => {
     const options = {
         slidesPerView: 1,
         spaceBetween: 50,
@@ -38,11 +40,19 @@ const Slider:FC<SliderProps> = ({ films }) => {
         >
             {films.map(film => (
                 <SwiperSlide key={film.id}>
-                    <FilmItem
-                        id={film.id}
-                        title={film.title}
-                        poster_path={film.poster_path} 
-                    />
+                    {type === 'movie' ? (
+                        <FilmItem
+                            id={film.id}
+                            title={film.title}
+                            poster_path={film.poster_path} 
+                        />
+                    ) : (
+                        <TvItem
+                            id={film.id}
+                            title={film.name}
+                            poster_path={film.poster_path} 
+                        />
+                    )}
                 </SwiperSlide>
             ))}
         </Swiper>

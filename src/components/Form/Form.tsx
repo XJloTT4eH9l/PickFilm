@@ -114,7 +114,7 @@ const Form:FC<FormProps> = ({ type }) => {
             {error.length > 0 && <p className='form__error form__error--center'>{error}</p>}
             {loading && <Spinner />}
             {type === 'Login' ? (
-                <p className='form__message'>Not register yet? <Link to='/signup'>Sign in</Link></p>
+                <p className='form__message'>Not register yet? <Link to='/signup'>Sign up</Link></p>
             ) : (
                 <p className='form__message'>Already have account? <Link to='/login'>Log in</Link></p>
             )}

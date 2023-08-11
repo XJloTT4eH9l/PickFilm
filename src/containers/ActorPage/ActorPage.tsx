@@ -64,7 +64,10 @@ const ActorPage = () => {
                     )
                 )}
                 {actorInfo && (
-                    <Filmography id={actorInfo.id} type='films' />
+                    <>
+                        <Filmography id={actorInfo.id} type='movie' />
+                        <Filmography id={actorInfo.id} type='tv' />
+                    </>
                 )}
             </div>
         </section>

@@ -29,7 +29,7 @@ const TvItem:FC<TvItemProps> = ({ id, title, poster_path }) => {
                         />
                     )
                 }
-                <h3 className='film-item__title'>{title}</h3>
+                <h3 className='film-item__title'>{title.length > 25 ? title.slice(0, 25) + '...' : title}</h3>
             </Link>
         </li>
     )

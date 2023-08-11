@@ -18,14 +18,23 @@ interface Film {
     popularity: number;
 }
 
-const Filmography:FC<FilmSliderProps> = ({ id }) => {
+// interface Tv {
+//     id: number;
+//     name: string;
+//     poster_path: string;
+//     popularity: number;
+// }
+
+const Filmography:FC<FilmSliderProps> = ({ id, type }) => {
     const [films, setFilms] = useState<Film[]>();
+    // const [series, setSeries] = useState<Tv[]>();
     const [loading, setLoading] = useState<boolean>(false);
 
     const getFilms = async () => {
         try {
             setLoading(true);
-            const responce = await axios.get(API_ACTOR + id + '/movie_credits' + API_KEY);
+            const responce = await axios.get(API_ACTOR + id + `/${type}_credits` + API_KEY);
+            console.log(responce.data);
             if(responce.status === 200) {
                 setFilms(responce.data.cast);
             }
@@ -42,9 +51,11 @@ const Filmography:FC<FilmSliderProps> = ({ id }) => {
 
     return (
         <section className='filmography'>
-            <h2 className='filmography__title'>Films</h2>
+            <h2 className='filmography__title'>{type === 'movie' ? 'Movies' : 'Series'}</h2>
             {loading ? <Spinner /> : (
-                films && <Slider films={films.sort((a,b) => b.popularity - a.popularity)} />
+                films && films.length > 0 && (
+                    <Slider type={type} films={films.sort((a,b) => b.popularity - a.popularity)} />
+                )
             )}
         </section>
     )

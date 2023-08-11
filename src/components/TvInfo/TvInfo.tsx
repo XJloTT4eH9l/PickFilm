@@ -118,16 +118,18 @@ const TvInfo:FC<TvInfoProps> = ({ tvInfo }) => {
                             <p>{voteAverage.toFixed(1)} / 10</p>
                         </div>
                         <p className="film-info__date">{releaseDate.split('-')[0]}</p>
-                        {loading ? <Spinner /> : (
-                            <button
-                                className={seriesInFav ? 'film-info__btn film-info__btn--active' : 'film-info__btn'}
-                                onClick={seriesInFav ? removeFromWatchList : addToWatchList}
-                            >
-                                {seriesInFav 
-                                    ? <p><img src={done} alt='remove'/>In watchlist</p> 
-                                    : <p>Add to watchlist</p>
-                                }
-                            </button>
+                        {isAuth && (
+                            loading ? <Spinner /> : (
+                                <button
+                                    className={seriesInFav ? 'film-info__btn film-info__btn--active' : 'film-info__btn'}
+                                    onClick={seriesInFav ? removeFromWatchList : addToWatchList}
+                                >
+                                    {seriesInFav 
+                                        ? <p><img src={done} alt='remove'/>In watchlist</p> 
+                                        : <p>Add to watchlist</p>
+                                    }
+                                </button>
+                            )
                         )}
                         <ul className="film-info__genre-list">
                             {genres.map(genre => (
