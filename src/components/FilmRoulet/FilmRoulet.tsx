@@ -202,7 +202,7 @@ const FilmRoulet = () => {
                                 <div className="film__content">
                                     <h2 className="film__title">
                                         <Link 
-                                            to={type === 'Movie' ? `/movies/${film.id}` : `/tv/${film.id}`}
+                                            to={type === 'Movie' ? `/movie/${film.id}` : `/tv/${film.id}`}
                                         >
                                             {film.title}
                                         </Link>

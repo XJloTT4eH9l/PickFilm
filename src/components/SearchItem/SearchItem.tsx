@@ -3,18 +3,18 @@ import { Link } from 'react-router-dom';
 import { BASE_POSTER } from '../../constants/api';
 
 import posterPlaceholder from '../../assets/img/movie-placeholder.png';
-import './FilmItem.scss';
 
-interface FilmItemProps {
+interface SearchItemProps {
     id: number | string;
     title: string;
     poster_path: string;
+    type: string;
 }
 
-const FilmItem:FC<FilmItemProps> = ({ id, title, poster_path }) => {
+const SearchItem:FC<SearchItemProps> = ({ id, title, poster_path, type }) => {
     return (
         <li className='film-item'>
-            <Link className='film-item__link' to={`/movie/${id}`}>
+            <Link className='film-item__link' to={`/${type}/${id}`}>
                 {
                     poster_path == null ? (
                         <img 
@@ -37,4 +37,4 @@ const FilmItem:FC<FilmItemProps> = ({ id, title, poster_path }) => {
     )
 }
 
-export default FilmItem;
+export default SearchItem;

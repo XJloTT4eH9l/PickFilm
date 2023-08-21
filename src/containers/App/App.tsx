@@ -19,12 +19,12 @@ function App() {
         <Header />
         <Routes>
           <Route path='/' element={ <SpinPage /> } />
-          <Route path='/movies/:id' element={ <MoviePage /> } />
+          <Route path='/movie/:id' element={ <MoviePage /> } />
           <Route path='/tv/:id' element={ <TvPage /> } />
           <Route path='/search' element={ <SearchPage /> } />
           <Route path='/watchlist' element={ <WatchListPage /> } />
           <Route path='/catalog' element={ <CatalogPage /> } />
-          <Route path='/actor/:id' element={ <ActorPage /> }/>
+          <Route path='/person/:id' element={ <ActorPage /> }/>
           <Route path='/login' element={ <LogInPage /> } />
           <Route path='/signup' element={ <SignInPage /> } />
         </Routes>

@@ -23,30 +23,30 @@ const Cast:FC<CastProps> = ({ id, type }) => {
     const [cast, setCast] = useState<Actor[]>();
     const [loading, setLoading] = useState<boolean>(false);
 
-    const getCast = async () => {
-        try {
-            setLoading(true);
-            const responce = await axios.get( type === 'film' 
-                ? API_MOVIE + '/' + id + '/credits' + API_KEY
-                : API_TV + '/' + id + '/credits' + API_KEY
-             );
-            if(responce.status === 200) {
-                setCast(responce.data.cast);
-            }
-        } catch (error) {
-            console.log(error);
-        } finally {
-            setLoading(false);
-        }
-    }
-
     useEffect(() => {
+        const getCast = async () => {
+            try {
+                setLoading(true);
+                const responce = await axios.get( type === 'film' 
+                    ? API_MOVIE + '/' + id + '/credits' + API_KEY
+                    : API_TV + '/' + id + '/credits' + API_KEY
+                 );
+                if(responce.status === 200) {
+                    setCast(responce.data.cast);
+                }
+            } catch (error) {
+                console.log(error);
+            } finally {
+                setLoading(false);
+            }
+        }
         getCast();
-    }, [id])
+    }, [id, type])
 
     return (
         <div className='cast'>
-            <h3 className='cast__title'>Cast</h3>
+            {cast && cast.length > 0 && <h3 className='cast__title'>Cast</h3>}
+            
             {loading ? <Spinner /> : (
                 cast && (
                     <ul className="cast__list">
@@ -57,7 +57,7 @@ const Cast:FC<CastProps> = ({ id, type }) => {
                                     key={actor.id} 
                                     className='cast__actor'
                                 >
-                                    <Link to={`/actor/${actor.id}`}>
+                                    <Link to={`/person/${actor.id}`}>
                                         <img 
                                             className='cast__img' 
                                             src={actor.profile_path === null ? actorPlaceholder : BASE_POSTER + actor.profile_path} 
