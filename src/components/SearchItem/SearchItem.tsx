@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { BASE_POSTER } from '../../constants/api';
 
 import posterPlaceholder from '../../assets/img/movie-placeholder.png';
+import actorPlaceholder from '../../assets/img/actorPlaceholder.png';
 
 interface SearchItemProps {
     id: number | string;
@@ -19,7 +20,7 @@ const SearchItem:FC<SearchItemProps> = ({ id, title, poster_path, type }) => {
                     poster_path == null ? (
                         <img 
                             className='film-item__poster' 
-                            src={posterPlaceholder} 
+                            src={type === 'person' ? actorPlaceholder  : posterPlaceholder} 
                             alt={title}
                         />
                         

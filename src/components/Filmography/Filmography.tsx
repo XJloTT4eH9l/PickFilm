@@ -41,10 +41,12 @@ const Filmography:FC<FilmSliderProps> = ({ id, type }) => {
 
     return (
         <section className='filmography'>
-            <h2 className='filmography__title'>{type === 'movie' ? 'Movies' : 'Series'}</h2>
             {loading ? <Spinner /> : (
                 films && films.length > 0 && (
-                    <Slider type={type} films={films.sort((a,b) => b.popularity - a.popularity)} />
+                    <>
+                        <h2 className='filmography__title'>{type === 'movie' ? 'Movies' : 'Series'}</h2>
+                        <Slider type={type} films={films.sort((a,b) => b.popularity - a.popularity)} />
+                    </>
                 )
             )}
         </section>

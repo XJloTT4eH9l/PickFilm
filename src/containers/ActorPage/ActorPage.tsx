@@ -6,6 +6,7 @@ import axios from 'axios';
 import LinkBack from '../../components/Ui/LinkBack/LinkBack';
 import Filmography from '../../components/Filmography/Filmography';
 import Spinner from '../../components/Ui/Spinner/Spinner';
+import actorPlaceholder from '../../assets/img/actorPlaceholder.png';
 import './ActorPage.scss';
 
 const ActorPage = () => {
@@ -47,7 +48,11 @@ const ActorPage = () => {
                     actorInfo && (
                         <div className='actor-page__container'>
                             <div className="actor-page__left">
-                                <img className='actor-page__poster' src={BASE_POSTER + actorInfo.profilePath} alt={actorInfo.name} />
+                                <img 
+                                    className='actor-page__poster' 
+                                    src={actorInfo.profilePath ? BASE_POSTER + actorInfo.profilePath : actorPlaceholder} 
+                                    alt={actorInfo.name} 
+                                />
                                 <div className="actor-page__info--mobile">
                                     <h1 className='actor-page__title'>{actorInfo.name}</h1>
                                     <p className='actor-page__field'>{actorInfo.placeOfBirth}</p>

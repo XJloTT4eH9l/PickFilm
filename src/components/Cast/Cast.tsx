@@ -4,7 +4,7 @@ import { API_MOVIE, API_TV, API_KEY } from '../../constants/api';
 import { BASE_POSTER } from '../../constants/api';
 import axios from 'axios';
 import Spinner from '../Ui/Spinner/Spinner';
-import actorPlaceholder from '../../assets/img/actor-palceholder.jpg';
+import actorPlaceholder from '../../assets/img/actorPlaceholder.png';
 import './Cast.scss';
 
 interface CastProps {
